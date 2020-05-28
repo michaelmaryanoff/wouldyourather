@@ -12,6 +12,7 @@ import Header from './Header';
 
 
 const App = () => {
+    // TODO: Create a protected route to ensure you can't click on header when authenticated
     return (
         <div className="ui container">
             <Router history={history}>
