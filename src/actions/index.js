@@ -5,7 +5,7 @@ export const signIn = (user) => {
     };
 };
 
-export const signOUT = () => {
+export const signOut = (user) => {
     return {
         type: 'SIGN_OUT'
     };

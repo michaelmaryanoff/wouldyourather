@@ -17,7 +17,6 @@ class LoginDropdown extends React.Component {
     handleOnClick(click) {
         click.preventDefault();
         
-        console.log(this.state.value);
         if (this.state.value !== '') {
             this.props.signIn(this.state.value);
             history.push('/home')
@@ -26,7 +25,6 @@ class LoginDropdown extends React.Component {
         
         
     }
-
 
     render() {    
         return (

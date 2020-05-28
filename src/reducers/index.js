@@ -8,6 +8,8 @@ const currentUserReducer = (currentUser=null, action) => {
     if (action.type === 'SIGN_IN') {
         // Return our user
         return action.payload
+    } else if (action.type === 'SIGN_OUT') {
+        return null
     }
     return currentUser;
 }
