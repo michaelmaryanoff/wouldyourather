@@ -12,6 +12,10 @@ class LoginDropdown extends React.Component {
         this.setState({value: change.target.value})   
     }
 
+    handleOnClick(click) {
+        click.preventDefault();
+    }
+
     componentDidUpdate() {
         console.log('update');
         console.log(this.state);
@@ -26,6 +30,7 @@ class LoginDropdown extends React.Component {
                 <option value="tylerMcGinnis">Tyler McGinnis</option>
                 <option value="johnDoe">John Doe</option>
             </select>
+            <button onClick={(event) => this.handleOnClick(event)}>Login</button>
         </form>
         );
     }
