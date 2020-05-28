@@ -16,10 +16,10 @@ const App = () => {
             <BrowserRouter>
             <div>
                 <Header />
-                <Route path="/" exact component={HomePage} />
+                <Route path="/home" exact component={HomePage} />
                 <Route path="/questions/new" exact component={QuestionCreate} />
                 <Route path="/leaderboard" exact component={LeaderBoard} />
-                <Route path="/login" exact component={Login} />
+                <Route path="/" exact component={Login} />
             </div>
             </BrowserRouter>
             
