@@ -1,16 +1,34 @@
 import React from 'react'
 
-const LoginDropdown = () => {
-    return (
+class LoginDropdown extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {value: ''};
+        console.log(this.state);
+    }
+
+    handleChange(change) {
+        this.setState({value: change.target.value})   
+    }
+
+    componentDidUpdate() {
+        console.log('update');
+        console.log(this.state);
+    }
+
+    render() {    
+        return (
         <form>
-            <select class="ui dropdown">
+            <select className="ui dropdown" onChange={(event) => this.handleChange(event)}>
                 <option value="">User</option>
-                <option value="0">Sarah Edo</option>
-                <option value="1">Tyler McGinnis</option>
-                <option value="2">John Doe</option>
+                <option value="sarahEdo">Sarah Edo</option>
+                <option value="tylerMcGinnis">Tyler McGinnis</option>
+                <option value="johnDoe">John Doe</option>
             </select>
         </form>
-    )
+        );
+    }
 }
 
 export default LoginDropdown;
