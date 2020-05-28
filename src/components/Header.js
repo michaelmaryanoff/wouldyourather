@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Logout from '../components/auth/Logout'
 
 const Header = () => {
     return (
@@ -14,9 +15,7 @@ const Header = () => {
                 Leaderboard
             </Link>
             <div className="right menu">
-                <Link to="/" className="item">
-                    All Questions
-                </Link>
+                <Logout />
             </div>
         </div>
     );
