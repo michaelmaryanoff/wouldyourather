@@ -14,7 +14,6 @@ import Header from './Header';
 const App = () => {
     return (
         <div className="ui container">
-            
             <Router history={history}>
             <div>
                 <Header />
