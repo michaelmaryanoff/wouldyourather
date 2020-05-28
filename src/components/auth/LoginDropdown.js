@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { signIn } from '../../actions'
 
 class LoginDropdown extends React.Component {
     constructor(props) {
@@ -14,18 +15,12 @@ class LoginDropdown extends React.Component {
 
     handleOnClick(click) {
         click.preventDefault();
-        console.log('submit state', this.state);
         
+        this.props.signIn(this.state.value);
     }
 
-    componentDidUpdate() {
-        console.log(this.state);
-        
-    }
 
     render() {    
-        console.log(this.props);
-        
         return (
         <form>
             <select className="ui dropdown" onChange={(event) => this.handleChange(event)}>
@@ -34,7 +29,7 @@ class LoginDropdown extends React.Component {
                 <option value="tylerMcGinnis">Tyler McGinnis</option>
                 <option value="johnDoe">John Doe</option>
             </select>
-            <button onClick={(event) => this.handleOnClick(event)}>Login</button>
+            <button onClick={(e) => this.handleOnClick(e)}>Login</button>
         </form>
         );
     }
@@ -42,8 +37,8 @@ class LoginDropdown extends React.Component {
 
 const mapStateToProps = (state) => {
     // Sets our current user state
-    // TODO: Set list of user in in a getUsers() call
+    // TODO: Set list of user in a getUsers() call and use to populate list
     return { currentUser: state.currentUser }
 }
  
-export default connect(mapStateToProps)(LoginDropdown);
+export default connect(mapStateToProps, { signIn })(LoginDropdown);
