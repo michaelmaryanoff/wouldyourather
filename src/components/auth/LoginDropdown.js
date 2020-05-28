@@ -6,7 +6,6 @@ class LoginDropdown extends React.Component {
         super(props);
 
         this.state = {value: ''};
-        console.log(this.state);
     }
 
     handleChange(change) {
@@ -15,14 +14,18 @@ class LoginDropdown extends React.Component {
 
     handleOnClick(click) {
         click.preventDefault();
+        console.log('submit state', this.state);
+        
     }
 
     componentDidUpdate() {
-        console.log('update');
         console.log(this.state);
+        
     }
 
     render() {    
+        console.log(this.props);
+        
         return (
         <form>
             <select className="ui dropdown" onChange={(event) => this.handleChange(event)}>
