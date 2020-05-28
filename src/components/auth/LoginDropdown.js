@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 
 class LoginDropdown extends React.Component {
     constructor(props) {
@@ -36,4 +37,10 @@ class LoginDropdown extends React.Component {
     }
 }
 
-export default LoginDropdown;
+const mapStateToProps = (state) => {
+    // Sets our current user state
+    // TODO: Set list of user in in a getUsers() call
+    return { currentUser: state.currentUser }
+}
+ 
+export default connect(mapStateToProps)(LoginDropdown);

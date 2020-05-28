@@ -9,7 +9,7 @@ const currentUserReducer = (currentUser=null, action) => {
         // Return our user
         return action.payload
     }
-    return;
+    return null;
 }
 
 // TODO: Make make a key for list of users
