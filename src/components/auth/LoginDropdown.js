@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { signIn } from '../../actions'
+import { signIn } from '../../actions';
+import history from '../../history';
 
 class LoginDropdown extends React.Component {
     constructor(props) {
@@ -16,7 +17,14 @@ class LoginDropdown extends React.Component {
     handleOnClick(click) {
         click.preventDefault();
         
-        this.props.signIn(this.state.value);
+        console.log(this.state.value);
+        if (this.state.value !== '') {
+            this.props.signIn(this.state.value);
+            history.push('/home')
+        }
+        
+        
+        
     }
 
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import { signIn } from '../actions';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import QuestionCreate from './questions/QuestionCreate';
+import history from '../history'
+
 
 import HomePage from './pages/HomePage';
 import LeaderBoard from './pages/LeaderBoard';
@@ -14,7 +15,7 @@ const App = () => {
     return (
         <div className="ui container">
             
-            <BrowserRouter>
+            <Router history={history}>
             <div>
                 <Header />
                 <Route path="/home" exact component={HomePage} />
@@ -22,7 +23,7 @@ const App = () => {
                 <Route path="/leaderboard" exact component={LeaderBoard} />
                 <Route path="/" exact component={Login} />
             </div>
-            </BrowserRouter>
+            </Router>
             
         </div>
         
