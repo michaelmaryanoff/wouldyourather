@@ -1,34 +1,30 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { signIn } from '../../actions';
+import { signIn, fetchUsers } from '../../actions';
 import history from '../../history';
-import { _getUsers } from '../../api/_DATA'
 
 class LoginDropdown extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {value: ''};
-    }
-
-    fetchUsers() {
-        return _getUsers().then(users => (console.log(users)
-        ))
+        this.state = {id: ''};
     }
 
     componentDidMount() {
-        this.fetchUsers()
+        this.props.fetchUsers()
+        console.log(this.props);
+        
     }
 
     handleChange(change) {
-        this.setState({value: change.target.value})   
+        this.setState({id: change.target.id})   
     }
 
     handleOnClick(click) {
         click.preventDefault();
         
-        if (this.state.value !== '') {
-            this.props.signIn(this.state.value);
+        if (this.state.id !== '') {
+            this.props.signIn(this.state.id);
             history.push('/home')
         }
     }
@@ -36,12 +32,14 @@ class LoginDropdown extends React.Component {
     render() {    
         return (
         <form>
+            Select a user <p></p>
             <select className="ui dropdown" onChange={(event) => this.handleChange(event)}>
-                <option value="">User</option>
-                <option value="sarahEdo">Sarah Edo</option>
-                <option value="tylerMcGinnis">Tyler McGinnis</option>
-                <option value="johnDoe">John Doe</option>
+                <option id="">User</option>
+                <option id="sarahEdo">Sarah Edo</option>
+                <option id="tylerMcGinnis">Tyler McGinnis</option>
+                <option id="johnDoe">John Doe</option>
             </select>
+            <p />
             <button onClick={(e) => this.handleOnClick(e)}>Login</button>
         </form>
         );
@@ -50,8 +48,10 @@ class LoginDropdown extends React.Component {
 
 const mapStateToProps = (state) => {
     // Sets our current user state
-    // TODO: Set list of user in a getUsers() call and use to populate list
-    return { currentUser: state.currentUser }
+    return {
+        users: Object.values(state.users),
+        currentUser: state.currentUser
+    }
 }
  
-export default connect(mapStateToProps, { signIn })(LoginDropdown);
+export default connect(mapStateToProps, { signIn, fetchUsers })(LoginDropdown);

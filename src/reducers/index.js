@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import _ from 'lodash';
 
 // TODO: make a reducer for list of users
 
@@ -14,8 +15,13 @@ const currentUserReducer = (currentUser=null, action) => {
     return currentUser;
 }
 
+const fetchUsersReducer = (users={}, action) => {
+    return { ...users, ..._.mapKeys(action.payload, 'id') }
+}
+
 // TODO: Make make a key for list of users
 export default combineReducers({
-    currentUser: currentUserReducer
+    currentUser: currentUserReducer,
+    users: fetchUsersReducer
 });
 
