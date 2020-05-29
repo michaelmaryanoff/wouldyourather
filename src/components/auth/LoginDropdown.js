@@ -2,12 +2,22 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { signIn } from '../../actions';
 import history from '../../history';
+import { _getUsers } from '../../api/_DATA'
 
 class LoginDropdown extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {value: ''};
+    }
+
+    fetchUsers() {
+        return _getUsers().then(users => (console.log(users)
+        ))
+    }
+
+    componentDidMount() {
+        this.fetchUsers()
     }
 
     handleChange(change) {
@@ -21,9 +31,6 @@ class LoginDropdown extends React.Component {
             this.props.signIn(this.state.value);
             history.push('/home')
         }
-        
-        
-        
     }
 
     render() {    

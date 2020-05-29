@@ -3,13 +3,11 @@ import { Router, Route } from 'react-router-dom';
 import QuestionCreate from './questions/QuestionCreate';
 import history from '../history'
 
-
 import HomePage from './pages/HomePage';
 import LeaderBoard from './pages/LeaderBoard';
 import Login from './pages/Login';
 
 import Header from './Header';
-
 
 const App = () => {
     // TODO: Create a protected route to ensure you can't click on header when authenticated
