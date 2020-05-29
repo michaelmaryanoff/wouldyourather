@@ -15,7 +15,9 @@ class LoginDropdown extends React.Component {
     }
 
     handleChange(change) {
-        this.setState({id: change.target.id})   
+        console.log('change', change.target.value);
+        
+        this.setState({id: change.target.value})   
     }
 
     renderDropDownMenu() {
@@ -29,7 +31,7 @@ class LoginDropdown extends React.Component {
     handleOnClick(click) {
         click.preventDefault();
         
-        if (this.state.id !== '') {
+        if (this.state.id !== '' && 'selectUser') {
             this.props.signIn(this.state.id);
             history.push('/home')
         }
@@ -42,6 +44,7 @@ class LoginDropdown extends React.Component {
             Select a user <p />
             <div>
             <select className="ui dropdown" onChange={(event) => this.handleChange(event)}>
+                <option id="selectUser">Select User</option>
                 {this.renderDropDownMenu()}
             </select>
             </div>
