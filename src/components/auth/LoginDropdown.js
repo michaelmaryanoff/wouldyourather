@@ -7,6 +7,8 @@ class LoginDropdown extends React.Component {
     constructor(props) {
         super(props);
 
+        this.handleChange = this.handleChange.bind(this);
+
         this.state = {id: ''};
     }
 
@@ -15,15 +17,15 @@ class LoginDropdown extends React.Component {
     }
 
     handleChange(change) {
-        console.log('change', change.target.value);
+        console.log('change.target.value', change.target.value);
         
-        this.setState({id: change.target.value})   
+        this.setState({id: change.target.value})  
     }
 
     renderDropDownMenu() {
         return this.props.users.map(user => {
             return (
-                <option id={user.id} key={user.id}>{user.name}</option>
+                <option id={user.id} key={user.id} value={user.id}>{user.name}</option>
             )
         })
     }
@@ -38,12 +40,11 @@ class LoginDropdown extends React.Component {
     }
 
     render() {  
-        console.log('props in render', this.props.users);
         return (
         <form>
             Select a user <p />
             <div>
-            <select className="ui dropdown" onChange={(event) => this.handleChange(event)}>
+            <select className="ui dropdown" onChange={(event) => {this.handleChange(event)}}>
                 <option id="selectUser">Select User</option>
                 {this.renderDropDownMenu()}
             </select>

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import _ from 'lodash';
 
 // TODO: make a reducer for list of users
 
