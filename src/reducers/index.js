@@ -15,8 +15,11 @@ const currentUserReducer = (currentUser=null, action) => {
     return currentUser;
 }
 
-const fetchUsersReducer = (users={}, action) => {
-    return { ...users, ..._.mapKeys(action.payload, 'id') }
+const fetchUsersReducer = (state=[], action) => {
+    if (action.type === 'FETCH_USERS') {
+        return action.payload
+    }
+    return state
 }
 
 // TODO: Make make a key for list of users

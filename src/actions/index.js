@@ -15,7 +15,6 @@ export const signOut = (user) => {
 
 export const fetchUsers = () => async dispatch => {
     const response = await _getUsers();
-    console.log(response);
 
-    dispatch({type: 'FETCH_STREAMS', payload: response})
+    dispatch({type: 'FETCH_USERS', payload: response})
 }

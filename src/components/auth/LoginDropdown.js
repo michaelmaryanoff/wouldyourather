@@ -12,8 +12,12 @@ class LoginDropdown extends React.Component {
 
     componentDidMount() {
         this.props.fetchUsers()
-        console.log(this.props);
-        
+        console.log('props', this.props.users);
+        console.log(this.state);
+    }
+
+    componentDidUpdate() {
+        console.log(this.state);
     }
 
     handleChange(change) {
@@ -29,7 +33,9 @@ class LoginDropdown extends React.Component {
         }
     }
 
-    render() {    
+    render() {  
+        console.log('props in render', this.props.users);
+          
         return (
         <form>
             Select a user <p></p>
@@ -49,7 +55,7 @@ class LoginDropdown extends React.Component {
 const mapStateToProps = (state) => {
     // Sets our current user state
     return {
-        users: Object.values(state.users),
+        users: state.users,
         currentUser: state.currentUser
     }
 }
