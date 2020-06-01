@@ -17,7 +17,6 @@ class LoginDropdown extends React.Component {
     }
 
     handleChange(change) {
-        console.log('change.target.value', change.target.value);
         
         this.setState({id: change.target.value})  
     }

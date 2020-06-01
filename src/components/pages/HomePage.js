@@ -1,7 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { fetchQuestions } from '../../actions';
+import { connect } from 'react-redux';
 
-const HomePage = () => {
-    return <div>HomePage</div>;
+class HomePage extends React.Component {
+    componentDidMount() {
+        this.props.fetchQuestions()
+    }
+
+    render() {
+
+
+        return <div>HomePage</div>;
+    }
+    
 }
 
-export default HomePage;
+const mapStateToProps = (state) => {
+    // Sets our current user state
+    return {
+        questions: Object.values(state.questions)
+    }
+}
+
+export default connect(mapStateToProps, { fetchQuestions })(HomePage);

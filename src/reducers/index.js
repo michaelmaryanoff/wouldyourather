@@ -6,7 +6,6 @@ const currentUserReducer = (currentUser=null, action) => {
 
     // Checks to see if we are using a sign in action
     if (action.type === 'SIGN_IN') {
-        // Return our user
         return action.payload
     } else if (action.type === 'SIGN_OUT') {
         return null
@@ -21,9 +20,17 @@ const fetchUsersReducer = (state=[], action) => {
     return state
 }
 
-// TODO: Make make a key for list of users
+const fetchQuestionsReducer = (state={}, action) => {
+    if (action.type === 'FETCH_QUESTIONS') {
+        return action.payload
+    }
+    return state
+}
+
+
 export default combineReducers({
     currentUser: currentUserReducer,
-    users: fetchUsersReducer
+    users: fetchUsersReducer,
+    questions: fetchQuestionsReducer
 });
 
