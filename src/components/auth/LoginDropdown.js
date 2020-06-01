@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { signIn, fetchUsers } from '../../actions';
+import { signIn, fetchUsers, fetchUsersAndQuestions } from '../../actions';
 import history from '../../history';
 
 class LoginDropdown extends React.Component {
@@ -13,11 +13,10 @@ class LoginDropdown extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchUsers()
+        this.props.fetchUsersAndQuestions()
     }
 
     handleChange(change) {
-        
         this.setState({id: change.target.value})  
     }
 
@@ -59,8 +58,9 @@ const mapStateToProps = (state) => {
     // Sets our current user state
     return {
         users: Object.values(state.users),
+        questions: Object.values(state.questions),
         currentUser: state.currentUser
     }
 }
  
-export default connect(mapStateToProps, { signIn, fetchUsers })(LoginDropdown);
+export default connect(mapStateToProps, { signIn, fetchUsers, fetchUsersAndQuestions })(LoginDropdown);

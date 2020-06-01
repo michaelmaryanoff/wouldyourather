@@ -1,18 +1,27 @@
 import React from 'react';
-import { fetchQuestions, fetchUsers } from '../../actions';
+import { fetchQuestions, fetchUsers, fetchUsersAndQuestions } from '../../actions';
 import { connect } from 'react-redux';
 
 class HomePage extends React.Component {
     componentDidMount() {
-        this.props.fetchQuestions()
+        this.props.fetchUsersAndQuestions()
+    }
+    componentDidUpdate() {
+        console.log('users array', this.props.users);   
+    }
+
+    renderUserName(post) {
+        return this.props.users.filter(user => user.id === post)
     }
 
     renderUnansweredList() {
         return this.props.questions.map(question => {
+            const userName = this.renderUserName(question.author)[0].name
+
             return (
                 <div className="item" key={question.id}>
                     <div className="content">
-                        <div className="header">{`${question.author} asks:`}</div>
+                        <div className="header">{`${userName} asks:`}</div>
                             <div >
                                 {question.optionOne.text}
                                 <br />OR
@@ -46,4 +55,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { fetchQuestions, fetchUsers })(HomePage);
+export default connect(mapStateToProps, { fetchQuestions, fetchUsers, fetchUsersAndQuestions })(HomePage);
