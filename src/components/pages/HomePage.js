@@ -10,17 +10,23 @@ class HomePage extends React.Component {
         console.log('users array', this.props.users);   
     }
 
-    renderUserName(post) {
+    queryUserAttributes(post) {
         return this.props.users.filter(user => user.id === post)
     }
 
     renderUnansweredList() {
         return this.props.questions.map(question => {
-            const userName = this.renderUserName(question.author)[0].name
-
+            //TODO: This could be destructed
+            const userName = this.queryUserAttributes(question.author)[0].name
+            const avatarURLStub = this.queryUserAttributes(question.author)[0].avatarURL
+            const avatarURLFull = require(`${avatarURLStub}`)
+            console.log('url stub', avatarURLStub);
+            
+            
             return (
                 <div className="item" key={question.id}>
                     <div className="content">
+                        <img className="ui avatar image" alt="hey" src={avatarURLFull} />
                         <div className="header">{`${userName} asks:`}</div>
                             <div >
                                 {question.optionOne.text}
