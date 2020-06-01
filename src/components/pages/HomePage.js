@@ -19,7 +19,7 @@ class HomePage extends React.Component {
             //TODO: This could be destructed
             const userName = this.queryUserAttributes(question.author)[0].name
             const avatarURLStub = this.queryUserAttributes(question.author)[0].avatarURL
-            const avatarURLFull = require(`${avatarURLStub}`)
+            const avatarURLFull = require(`../../api${avatarURLStub}`)
             console.log('url stub', avatarURLStub);
             
             
