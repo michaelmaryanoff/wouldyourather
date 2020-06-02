@@ -89,7 +89,7 @@ class HomePage extends React.Component {
 
     renderQuestionsListFilter(isUnanswered) {
 
-        return this.props.questions.map(question => {
+        return this.props.questions.filter(question => question.optionOne.votes.includes(this.state.currentUser) || question.optionTwo.votes.includes(this.state.currentUser)).map(question => {
             const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
             const avatarURLFull = require(`../../api${avatarURL}`) 
 
@@ -109,24 +109,7 @@ class HomePage extends React.Component {
                         </div>
                     </div>
                 )
-            } else {
-                
-                return (
-                    <div className="item" key={question.id}>
-                        <div className="content">
-                            <img className="ui avatar image" alt="hey" src={avatarURLFull} />
-                            <div className="header">{`${name} asks:`}</div>
-                                <div >
-                                    {question.optionOne.text}
-                                    <br />OR
-                                    <br />
-                                    {question.optionTwo.text}
-                                </div>
-                        </div>
-                    </div>
-                )
             }
-            
         })
     }
 
@@ -139,7 +122,7 @@ class HomePage extends React.Component {
                 <div>
                     <h1>Questions</h1>
                     <div className="ui celled list">
-                        {this.renderQuestionsListFilter(this.state.currentUser)}
+                        {this.renderQuestionsListFilter(this.state.isUnanswered)}
                     </div>
                 </div>
             </div>
