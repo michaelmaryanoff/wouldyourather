@@ -7,29 +7,49 @@ class HomePage extends React.Component {
         super(props);
 
         this.state = {
-            unanswered: true,
+            isUnanswered: true,
             currentUser: ''
         };
     }
 
+    componentDidUpdate() {
+        console.log(this.state);
+    }
+
     componentDidMount() {
         this.props.fetchUsersAndQuestions()
+        this.setState({currentUser: this.props.currentUser})
     };
 
     renderButtons() {
         return (
             <div>
-                <button>
+                <button className="ui button primary" onClick={() => this.handleOnClick(true)}>
                     Unanswered Questions
                 </button>
-                <button>
-                    Answered questions
+                <button className="ui button" onClick={() => this.handleOnClick(false)}>
+                    Answered Questions
                 </button>
             </div>
         );
     };
 
-    handleButtonClick() {
+    handleOnClick(isUnanswered) {
+        // This funciton will change interfact depending on a bool which lets us know
+        // If we are rendering unanswered questions (true) or answered questions (false)
+
+        if (isUnanswered === true) {
+            this.setState({isUnanswered: true})
+        } else {
+            this.setState({isUnanswered: false})
+        }
+    }
+
+    renderUnansweredQuestions() {
+
+    }
+
+    renderAnsweredQuestions() {
 
     }
 
@@ -42,9 +62,7 @@ class HomePage extends React.Component {
             //TODO: This could be destructed
             const userName = this.queryUserAttributes(question.author)[0].name
             const avatarURLStub = this.queryUserAttributes(question.author)[0].avatarURL
-            const avatarURLFull = require(`../../api${avatarURLStub}`)
-            console.log('url stub', avatarURLStub);
-            
+            const avatarURLFull = require(`../../api${avatarURLStub}`) 
             
             return (
                 <div className="item" key={question.id}>
@@ -85,7 +103,8 @@ const mapStateToProps = (state) => {
     // Sets our current user state
     return {
         questions: Object.values(state.questions),
-        users: Object.values(state.users)
+        users: Object.values(state.users),
+        currentUser: state.currentUser
     }
 }
 
