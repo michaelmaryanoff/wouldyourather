@@ -1,6 +1,7 @@
 import React from 'react';
 import { fetchQuestions, fetchUsers, fetchUsersAndQuestions } from '../../actions';
 import { connect } from 'react-redux';
+import history from '../../history'
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -19,6 +20,10 @@ class HomePage extends React.Component {
     componentDidMount() {
         this.props.fetchUsersAndQuestions()
         this.setState({currentUser: this.props.currentUser})
+        // Temporarily pushes us back to login if there is no current user
+        if (!this.props.currentUser) {
+            history.push('/')
+        }
     };
 
     renderButtons() {
@@ -82,6 +87,49 @@ class HomePage extends React.Component {
         })
     }
 
+    renderQuestionsListFilter(isUnanswered) {
+
+        return this.props.questions.map(question => {
+            const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
+            const avatarURLFull = require(`../../api${avatarURL}`) 
+
+            if (question.optionOne.votes.includes(this.state.currentUser) || question.optionTwo.votes.includes(this.state.currentUser)) {
+                
+                return (
+                    <div className="item" key={question.id}>
+                        <div className="content">
+                            <img className="ui avatar image" alt="hey" src={avatarURLFull} />
+                            <div className="header">{`${name} asks:`}</div>
+                                <div >
+                                    {question.optionOne.text}
+                                    <br />OR
+                                    <br />
+                                    {question.optionTwo.text}
+                                </div>
+                        </div>
+                    </div>
+                )
+            } else {
+                
+                return (
+                    <div className="item" key={question.id}>
+                        <div className="content">
+                            <img className="ui avatar image" alt="hey" src={avatarURLFull} />
+                            <div className="header">{`${name} asks:`}</div>
+                                <div >
+                                    {question.optionOne.text}
+                                    <br />OR
+                                    <br />
+                                    {question.optionTwo.text}
+                                </div>
+                        </div>
+                    </div>
+                )
+            }
+            
+        })
+    }
+
     render() {
         return (
             <div>
@@ -91,7 +139,7 @@ class HomePage extends React.Component {
                 <div>
                     <h1>Questions</h1>
                     <div className="ui celled list">
-                        {this.renderQuestionList()}
+                        {this.renderQuestionsListFilter(this.state.currentUser)}
                     </div>
                 </div>
             </div>
