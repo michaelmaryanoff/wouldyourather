@@ -3,11 +3,34 @@ import { fetchQuestions, fetchUsers, fetchUsersAndQuestions } from '../../action
 import { connect } from 'react-redux';
 
 class HomePage extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            unanswered: true,
+            currentUser: ''
+        };
+    }
+
     componentDidMount() {
         this.props.fetchUsersAndQuestions()
-    }
-    componentDidUpdate() {
-        console.log('users array', this.props.users);   
+    };
+
+    renderButtons() {
+        return (
+            <div>
+                <button>
+                    Unanswered Questions
+                </button>
+                <button>
+                    Answered questions
+                </button>
+            </div>
+        );
+    };
+
+    handleButtonClick() {
+
     }
 
     queryUserAttributes(post) {
@@ -43,9 +66,14 @@ class HomePage extends React.Component {
     render() {
         return (
             <div>
-                <h1>Questions</h1>
-                <div className="ui celled list">
-                    {this.renderUnansweredList()}
+                <div>
+                    {this.renderButtons()}
+                </div>
+                <div>
+                    <h1>Questions</h1>
+                    <div className="ui celled list">
+                        {this.renderUnansweredList()}
+                    </div>
                 </div>
             </div>
         )
