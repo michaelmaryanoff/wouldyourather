@@ -22,12 +22,23 @@ class HomePage extends React.Component {
     };
 
     renderButtons() {
+        let unansweredButtonClass = ""
+        let answeredButtonClass = ""
+
+        if (this.state.isUnanswered) {
+            unansweredButtonClass = "ui button primary"
+            answeredButtonClass = "ui button"
+        } else {
+            unansweredButtonClass = "ui button"
+            answeredButtonClass = "ui button primary"
+        }
+
         return (
             <div>
-                <button className="ui button primary" onClick={() => this.handleOnClick(true)}>
+                <button className={unansweredButtonClass} onClick={() => this.handleOnClick(true)}>
                     Unanswered Questions
                 </button>
-                <button className="ui button" onClick={() => this.handleOnClick(false)}>
+                <button className={answeredButtonClass} onClick={() => this.handleOnClick(false)}>
                     Answered Questions
                 </button>
             </div>
@@ -35,9 +46,8 @@ class HomePage extends React.Component {
     };
 
     handleOnClick(isUnanswered) {
-        // This funciton will change interfact depending on a bool which lets us know
+        // This funciton will change interface depending on a bool which lets us know
         // If we are rendering unanswered questions (true) or answered questions (false)
-
         if (isUnanswered === true) {
             this.setState({isUnanswered: true})
         } else {
@@ -45,19 +55,11 @@ class HomePage extends React.Component {
         }
     }
 
-    renderUnansweredQuestions() {
-
-    }
-
-    renderAnsweredQuestions() {
-
-    }
-
     queryUserAttributes(post) {
         return this.props.users.filter(user => user.id === post)
     }
 
-    renderUnansweredList() {
+    renderQuestionList() {
         return this.props.questions.map(question => {
             //TODO: This could be destructed
             const userName = this.queryUserAttributes(question.author)[0].name
@@ -90,7 +92,7 @@ class HomePage extends React.Component {
                 <div>
                     <h1>Questions</h1>
                     <div className="ui celled list">
-                        {this.renderUnansweredList()}
+                        {this.renderQuestionList()}
                     </div>
                 </div>
             </div>
