@@ -88,29 +88,52 @@ class HomePage extends React.Component {
     }
 
     renderQuestionsListFilter(isUnanswered) {
-
-        return this.props.questions.filter(question => question.optionOne.votes.includes(this.state.currentUser) || question.optionTwo.votes.includes(this.state.currentUser)).map(question => {
-            const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
-            const avatarURLFull = require(`../../api${avatarURL}`) 
-
-            if (question.optionOne.votes.includes(this.state.currentUser) || question.optionTwo.votes.includes(this.state.currentUser)) {
-                
-                return (
-                    <div className="item" key={question.id}>
-                        <div className="content">
-                            <img className="ui avatar image" alt="hey" src={avatarURLFull} />
-                            <div className="header">{`${name} asks:`}</div>
-                                <div >
-                                    {question.optionOne.text}
-                                    <br />OR
-                                    <br />
-                                    {question.optionTwo.text}
-                                </div>
+        if (isUnanswered) {
+            console.log('got to if')
+            
+            return this.props.questions.filter(question => question.optionOne.votes.includes(this.state.currentUser) || question.optionTwo.votes.includes(this.state.currentUser)).map(question => {
+                const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
+                const avatarURLFull = require(`../../api${avatarURL}`)     
+                    return (
+                        <div className="item" key={question.id}>
+                            <div className="content">
+                                <img className="ui avatar image" alt="hey" src={avatarURLFull} />
+                                <div className="header">{`${name} asks:`}</div>
+                                    <div >
+                                        {question.optionOne.text}
+                                        <br />OR
+                                        <br />
+                                        {question.optionTwo.text}
+                                    </div>
+                            </div>
                         </div>
-                    </div>
-                )
-            }
-        })
+                    )
+                
+            })
+        } else {            
+            return this.props.questions.filter(question => !question.optionOne.votes.includes(this.state.currentUser) || !question.optionTwo.votes.includes(this.state.currentUser)).map(question => {
+                const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
+                const avatarURLFull = require(`../../api${avatarURL}`) 
+    
+                
+                    
+                    return (
+                        <div className="item" key={question.id}>
+                            <div className="content">
+                                <img className="ui avatar image" alt="hey" src={avatarURLFull} />
+                                <div className="header">{`${name} asks:`}</div>
+                                    <div >
+                                        {question.optionOne.text}
+                                        <br />OR
+                                        <br />
+                                        {question.optionTwo.text}
+                                    </div>
+                            </div>
+                        </div>
+                    )
+                
+            })
+        }
     }
 
     render() {
