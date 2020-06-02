@@ -62,15 +62,14 @@ class HomePage extends React.Component {
     renderQuestionList() {
         return this.props.questions.map(question => {
             //TODO: This could be destructed
-            const userName = this.queryUserAttributes(question.author)[0].name
-            const avatarURLStub = this.queryUserAttributes(question.author)[0].avatarURL
-            const avatarURLFull = require(`../../api${avatarURLStub}`) 
+            const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
+            const avatarURLFull = require(`../../api${avatarURL}`) 
             
             return (
                 <div className="item" key={question.id}>
                     <div className="content">
                         <img className="ui avatar image" alt="hey" src={avatarURLFull} />
-                        <div className="header">{`${userName} asks:`}</div>
+                        <div className="header">{`${name} asks:`}</div>
                             <div >
                                 {question.optionOne.text}
                                 <br />OR
