@@ -1,5 +1,6 @@
 import { _getUsers, _getQuestions } from '../api/_DATA';
 
+//TODO: make payload an object with a key and value
 export const signIn = (user) => {
     return {
         type: 'SIGN_IN',
