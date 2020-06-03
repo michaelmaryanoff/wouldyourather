@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import QuestionCreate from './questions/QuestionCreate';
+import QuestionResponse from './questions/QuestionResponse'
 import history from '../history'
 
 import HomePage from './pages/HomePage';
@@ -21,6 +22,7 @@ const App = () => {
                 <Route path="/questions/new" exact component={QuestionCreate} />
                 <Route path="/leaderboard" exact component={LeaderBoard} />
                 <Route path="/" exact component={Login} />
+                <Route path="/temp" exact component={QuestionResponse} />
             </div>
             </Router>
             
