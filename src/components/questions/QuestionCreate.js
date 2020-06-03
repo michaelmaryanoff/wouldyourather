@@ -37,6 +37,21 @@ class QuestionCreate extends React.Component {
     }
 }
 
+const validate = (formValues) => {
+    // This will just validate our values using the validade function that comes with redux 
+    const errors = {};
+
+    if(!formValues.optionOne) {
+        errors.optionOne = 'You must enter a first option'
+    }
+
+    if(!formValues.optionTwo) {
+        errors.optionTwo = 'You must enter a second option'
+    }
+
+    return errors;
+};
+
 export default reduxForm({
     // Redux form stores you info with this key in your store
     form: 'questionCreate'
