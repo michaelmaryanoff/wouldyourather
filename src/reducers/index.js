@@ -16,6 +16,8 @@ const currentUserReducer = (currentUser=null, action) => {
 
 const fetchUsersReducer = (state=[], action) => {
     if (action.type === 'FETCH_USERS') {
+        
+        
         return action.payload
     }
     return state
@@ -30,8 +32,6 @@ const fetchQuestionsReducer = (state={}, action) => {
 
 const addQuestionReducer = (state={}, action) => {
     if (action.type === 'ADD_QUESTION') {
-        console.log(action)
-        
         
         return action.payload
     }
