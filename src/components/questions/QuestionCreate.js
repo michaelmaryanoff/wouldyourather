@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { addQuestion } from '../../actions'
 
 class QuestionCreate extends React.Component {
     renderError({ error, touched }) {
@@ -26,14 +28,13 @@ class QuestionCreate extends React.Component {
             </div>
             
         )
-    }
+    } 
 
     onSubmit(formValues) {
         // FormValues is used instead of the event object because we no longer care about the event object
         // We have all that stuff taken care of by Redux Form
-        
-        
-    }
+        this.props.createStream(formValues);
+    };
 
     render() {
         
@@ -65,8 +66,12 @@ const validate = (formValues) => {
     return errors;
 };
 
-export default reduxForm({
+
+// The reason that these look so convoluted is because the connect function was already occupied by our form
+const formWrapped = reduxForm({
     // Redux form stores you info with this key in your store
     form: 'questionCreate',
     validate: validate
 })(QuestionCreate);
+
+export default connect(null, { addQuestion })(formWrapped)
