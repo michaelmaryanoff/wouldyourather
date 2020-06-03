@@ -6,10 +6,13 @@ class QuestionCreate extends React.Component {
         // formProps is automatically created with the component attribute
         // This can be destructured but we are not for now
         // Label is being passed through as a prop to our form component
+
+        
         return (
             <div className="field">
                 <label>{formProps.label}</label>
                 <input {...formProps.input}/>
+                <div>{formProps.meta.error}</div>
             </div>
             
         )
@@ -18,12 +21,12 @@ class QuestionCreate extends React.Component {
     onSubmit(formValues) {
         // FormValues is used instead of the event object because we no longer care about the event object
         // We have all that stuff taken care of by Redux Form
-        console.log(formValues);
+        
         
     }
 
     render() {
-        console.log(this.props);
+        
         
         return (
             <div>
