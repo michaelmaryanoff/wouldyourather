@@ -54,5 +54,6 @@ const validate = (formValues) => {
 
 export default reduxForm({
     // Redux form stores you info with this key in your store
-    form: 'questionCreate'
+    form: 'questionCreate',
+    validate: validate
 })(QuestionCreate);
