@@ -2,9 +2,15 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 
 class QuestionResponse extends React.Component {
-  renderInput({ input, label }) {
-      console.log(input);
-      
+    constructor(props) {
+      super(props);
+
+      this.state = {optionSelected: ''};
+  }
+    
+  renderInput = ({ input, label }) => {  
+    
+    
     return (
       <div className="grouped fields">
         <div className="field">
@@ -16,12 +22,19 @@ class QuestionResponse extends React.Component {
   }
 
   onSubmit(formValues) {
-    console.log(formValues);
+    console.log('submission values', formValues);
   }
 
+  handleOnChange = event => {
+    console.log('event.target.value', event.target.value);
+    
+    this.setState({optionSelected: event.target.value })
+  }
+  
+
   render() {
-      console.log(this.props);
-      
+    console.log(this.state);
+    
     return (
       <div>
         <form
@@ -30,18 +43,20 @@ class QuestionResponse extends React.Component {
         >
         <label>Would you rather?</label>
           <Field
-            name="optionOne"
+            name="selection"
             component={this.renderInput}
             type="radio"
             label="First Option"
             value="optionOne"
+            onChange={this.handleOnChange}
           />
           <Field
-            name="optionTwo"
+            name="selection"
             component={this.renderInput}
             type="radio"
             label="Second option"
             value="optionTwo"
+            onChange={this.handleOnChange}
           />
           <button className="ui button primary">Submit Answer</button>
         </form>
