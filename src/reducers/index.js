@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 
 // TODO: make a reducer for list of users
 
@@ -31,6 +32,7 @@ const fetchQuestionsReducer = (state={}, action) => {
 export default combineReducers({
     currentUser: currentUserReducer,
     users: fetchUsersReducer,
-    questions: fetchQuestionsReducer
+    questions: fetchQuestionsReducer,
+    form: formReducer
 });
 
