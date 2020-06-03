@@ -28,11 +28,22 @@ const fetchQuestionsReducer = (state={}, action) => {
     return state
 }
 
+const addQuestionReducer = (state={}, action) => {
+    if (action.type === 'ADD_QUESTION') {
+        console.log(action)
+        
+        
+        return action.payload
+    }
+    return state
+}
+
 
 export default combineReducers({
     currentUser: currentUserReducer,
     users: fetchUsersReducer,
     questions: fetchQuestionsReducer,
-    form: formReducer
+    form: formReducer,
+    addQuestion: addQuestionReducer
 });
 

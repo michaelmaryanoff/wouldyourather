@@ -1,4 +1,5 @@
-import { _getUsers, _getQuestions, _saveQuestion } from '../api/_DATA';
+import { _getUsers, _getQuestions } from '../api/_DATA';
+import { saveQuestion } from '../api/utils'
 
 //TODO: make payload an object with a key and value
 export const signIn = (user) => {
@@ -33,6 +34,17 @@ export const fetchUsersAndQuestions = () => {
     }
 }
 
-export const addQuestion = formValues => async dispatch => {
-    _saveQuestion(formValues);
+export const addQuestion = formValues => async (dispatch, getState) => {
+    const { optionOne, optionTwo } = formValues
+    const { currentUser } = getState();
+
+    const question = {
+        author: currentUser,
+        optionOneText: optionOne,
+        optionTwoText: optionTwo
+    }
+    
+    const response = await saveQuestion(question)
+    
+    dispatch({type: 'ADD_QUESTION', payload: response})
 }
