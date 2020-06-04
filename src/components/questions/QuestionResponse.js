@@ -33,8 +33,6 @@ class QuestionResponse extends React.Component {
   
 
   render() {
-    console.log(this.state);
-    
     return (
       <div>
         <form
@@ -65,6 +63,19 @@ class QuestionResponse extends React.Component {
   }
 }
 
+const validate = ({optionOne, optionTwo}) => {
+  const errors = {}
+  if (!optionOne || !optionTwo) {
+    console.log('we cannot find a value!');
+    
+    errors.optionOne = 'Please select a response'
+    errors.optionTwo = 'Please select a response'
+    console.log(errors);
+  }
+  return errors
+}
+
 export default reduxForm({
-  form: 'questionResponse'
+  form: 'questionResponse',
+  validate: validate
 })(QuestionResponse);
