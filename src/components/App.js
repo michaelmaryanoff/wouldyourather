@@ -22,7 +22,7 @@ const App = () => {
                 <Route path="/questions/new" exact component={QuestionCreate} />
                 <Route path="/leaderboard" exact component={LeaderBoard} />
                 <Route path="/" exact component={Login} />
-                <Route path="/temp" exact component={QuestionResponse} />
+                <Route path="/questions/response/:id" exact component={QuestionResponse} />
             </div>
             </Router>
             

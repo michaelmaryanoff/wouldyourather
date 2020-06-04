@@ -42,7 +42,7 @@ class QuestionResponse extends React.Component {
           onSubmit={this.props.handleSubmit(this.onSubmit)}
           className="ui form"
         >
-        <label>Would you rather?</label>
+        <label>Would you rather?</label><p />
           <Field
             name="selection"
             component={this.renderInput}

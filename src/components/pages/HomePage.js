@@ -1,7 +1,8 @@
 import React from 'react';
 import { fetchQuestions, fetchUsers, fetchUsersAndQuestions } from '../../actions';
 import { connect } from 'react-redux';
-import history from '../../history'
+import history from '../../history';
+import { Link } from 'react-router-dom';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -13,10 +14,6 @@ class HomePage extends React.Component {
         };
     }
 
-    componentDidUpdate() {
-        console.log(this.state);
-    }
-
     componentDidMount() {
         this.props.fetchUsersAndQuestions()
         this.setState({currentUser: this.props.currentUser})
@@ -26,7 +23,15 @@ class HomePage extends React.Component {
         }
     };
 
-    renderButtons() {
+    renderResponseButton(question) {
+        return (
+            <div className="right floated content">
+                <Link to={`/questions/response/${question.id}`} className="ui button primary">Respond</Link>
+            </div>
+        )
+    }
+
+    renderToggleButtons() {
         let unansweredButtonClass = ""
         let answeredButtonClass = ""
 
@@ -64,38 +69,17 @@ class HomePage extends React.Component {
         return this.props.users.filter(user => user.id === post)
     }
 
-    renderQuestionList() {
-        return this.props.questions.map(question => {
-            //TODO: This could be destructed
-            const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
-            const avatarURLFull = require(`../../api${avatarURL}`) 
-            
-            return (
-                <div className="item" key={question.id}>
-                    <div className="content">
-                        <img className="ui avatar image" alt="hey" src={avatarURLFull} />
-                        <div className="header">{`${name} asks:`}</div>
-                            <div >
-                                {question.optionOne.text}
-                                <br />OR
-                                <br />
-                                {question.optionTwo.text}
-                            </div>
-                    </div>
-                </div>
-            )
-        })
-    }
-
     renderQuestionsListFilter(isUnanswered) {
         if (isUnanswered) {
-            console.log('got to if')
             
             return this.props.questions.filter(question => !question.optionOne.votes.includes(this.state.currentUser) && !question.optionTwo.votes.includes(this.state.currentUser)).map(question => {
+                console.log(question);
+                
                 const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
                 const avatarURLFull = require(`../../api${avatarURL}`)     
                     return (
                             <div className="item" key={question.id}>
+                                {this.renderResponseButton(question)}
                                 <div className="content">
                                     <img className="ui avatar image" alt="hey" src={avatarURLFull} />
                                     <div className="header">{`${name} asks:`}</div>
@@ -137,7 +121,7 @@ class HomePage extends React.Component {
         return (
             <div>
                 <div>
-                    {this.renderButtons()}
+                    {this.renderToggleButtons()}
                 </div>
                 <div>
                     <h1>Questions</h1>
