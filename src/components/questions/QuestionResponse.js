@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { getSelectedQuestion } from '../../actions'
 
 
 class QuestionResponse extends React.Component {
@@ -11,14 +12,8 @@ class QuestionResponse extends React.Component {
   }
 
   componentDidMount() {
-    // Log the props
-    console.log(this.props.match.params.id);    
-
-    // Get information out of the users array by calling an index of the id
-    console.log('users', this.props.questions);
-
-    console.log('curr question', this.props.currentQuestion);
-    
+    console.log(this.props.currentQuestion);
+    this.props.getSelectedQuestion(this.props.currentQuestion)
   }
 
   renderLabelText(option) {
@@ -51,6 +46,7 @@ class QuestionResponse extends React.Component {
       return
     }
     console.log(this.props.currentQuestion);
+    this.props.getCurrentQuestion(this.props.currentQuestion)
   }
 
   handleOnChange = event => {
@@ -93,7 +89,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     questions: state.questions,
-    currentQuestion: state.questions[ownProps.match.params.id]
+    currentQuestion: state.questions[ownProps.match.params.id],
+    selectedQuestion: state.selectedQuestion
   }
 };
 
@@ -101,4 +98,4 @@ const formWrapped = reduxForm({
   form: 'questionResponse'
 })(QuestionResponse);
 
-export default connect(mapStateToProps)(formWrapped)
+export default connect(mapStateToProps, { getSelectedQuestion } )(formWrapped)

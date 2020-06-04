@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 
 class QuestionResult extends React.Component {
     
@@ -21,14 +22,17 @@ class QuestionResult extends React.Component {
     }
     render () {
         return (
-            
                 <div className="ui relaxed divided list">
                     {this.renderResults()}
                 </div>
-            
-            
         )
     }
 }
 
-export default QuestionResult;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        questions: state.questions
+    }
+}
+
+export default connect(mapStateToProps)(QuestionResult);

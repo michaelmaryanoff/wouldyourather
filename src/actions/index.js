@@ -35,9 +35,9 @@ export const fetchUsersAndQuestions = () => {
     }
 };
 
-export const getCurrentQuestion = (question) => {
+export const getSelectedQuestion = (question) => {
         return {
-            type: 'GET_QUESTION',
+            type: 'SELECT_QUESTION',
             payload: question
         }
 }
