@@ -2,28 +2,43 @@ import React from 'react'
 import { connect } from 'react-redux';
 
 class QuestionResult extends React.Component {
-    componentDidMount(){
-        console.log('selected question in QuestionResult', this.props.selectedQuestion)
-    }
-    renderResults() {
+    renderChoices() {
+        const { optionOne, optionTwo} = this.props.selectedQuestion
+        const totalVotes = optionOne.votes.length + optionTwo.votes.length
+        
         return (
             <div>
                 <div className="item">
                     <div className="Header">
-                        questionOne
+                        {this.props.selectedQuestion.optionOne.text}
+                    <div className="content">
+                        {optionOne.votes.length} out of {totalVotes} users chose this option.
+                    </div>
+                        
                     </div>
                 </div>
                 <div className="item">
                     <div className="Header">
-                        questionTwo
+                        {this.props.selectedQuestion.optionTwo.text}
+                        <div className="content">
+                            {optionTwo.votes.length} out of {totalVotes} users chose this option.
+                        </div>
+                        
                     </div>
                 </div>
+            </div>
+        )
+    }
+
+    renderResults() {
+        return (
+            <div>
+                {this.renderChoices()}
             </div>
         )
  
     }
     render () {
-        console.log(this.props.selectedQuestion)
         return (
                 <div className="ui relaxed divided list">
                     {this.renderResults()}
@@ -32,9 +47,7 @@ class QuestionResult extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    console.log('current state', state);
-    
+const mapStateToProps = (state) => {    
     return {
         questions: state.questions,
         selectedQuestion: state.selectedQuestion

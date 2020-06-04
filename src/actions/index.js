@@ -1,5 +1,5 @@
 import { _getUsers, _getQuestions } from '../api/_DATA';
-import { saveQuestion } from '../api/utils';
+import { saveQuestion, saveQuestionAnswer } from '../api/utils';
 import  history from '../history';
 
 //TODO: make payload an object with a key and value
@@ -40,6 +40,15 @@ export const getSelectedQuestion = (question) => {
             type: 'SELECT_QUESTION',
             payload: question
         }
+}
+
+export const submitQuestionResponse = formValues => async (dispatch, getState) => {
+    console.log('form values', formValues);
+    console.log(getState());
+    const { selection } = formValues
+    const { currentUser } = getState();
+    const id  = getState().selectedQuestion.id
+    
 }
 
 export const addQuestion = formValues => async (dispatch, getState) => {

@@ -24,7 +24,7 @@ const App = () => {
                 <Route path="/leaderboard" exact component={LeaderBoard} />
                 <Route path="/" exact component={Login} />
                 <Route path="/questions/response/:id" exact component={QuestionResponse} />
-                <Route path="/questions/result/temp" exact component={QuestionResult} />
+                <Route path="/questions/result/:id" exact component={QuestionResult} />
             </div>
             </Router>
             

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { getSelectedQuestion } from '../../actions'
+import { getSelectedQuestion, submitQuestionResponse } from '../../actions'
 import history from '../../history'
 
 
@@ -13,7 +13,6 @@ class QuestionResponse extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.currentQuestion);
     this.props.getSelectedQuestion(this.props.currentQuestion)
   }
 
@@ -47,7 +46,8 @@ class QuestionResponse extends React.Component {
       return
     }
     this.props.getSelectedQuestion(this.props.currentQuestion)
-    history.push('/questions/result/temp')
+    this.props.submitQuestionResponse(formValues)
+    history.push(`/questions/result/${this.props.currentQuestion.id}`)
   }
 
   handleOnChange = event => {
@@ -99,4 +99,4 @@ const formWrapped = reduxForm({
   form: 'questionResponse'
 })(QuestionResponse);
 
-export default connect(mapStateToProps, { getSelectedQuestion } )(formWrapped)
+export default connect(mapStateToProps, { getSelectedQuestion, submitQuestionResponse } )(formWrapped)
