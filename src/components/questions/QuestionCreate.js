@@ -36,8 +36,6 @@ class QuestionCreate extends React.Component {
     };
 
     render() {
-        
-        
         return (
             <div>
                 <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
