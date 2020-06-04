@@ -35,6 +35,13 @@ export const fetchUsersAndQuestions = () => {
     }
 };
 
+export const getCurrentQuestion = (question) => {
+        return {
+            type: 'GET_QUESTION',
+            payload: question
+        }
+}
+
 export const addQuestion = formValues => async (dispatch, getState) => {
     const { optionOne, optionTwo } = formValues
     const { currentUser } = getState();
