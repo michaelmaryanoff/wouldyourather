@@ -139,7 +139,8 @@ const mapStateToProps = (state) => {
     return {
         questions: Object.values(state.questions),
         users: Object.values(state.users),
-        currentUser: state.currentUser
+        currentUser: state.currentUser,
+        currentQuestion: state.currentQuestion
     }
 }
 

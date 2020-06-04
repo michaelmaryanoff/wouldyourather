@@ -9,11 +9,37 @@ class QuestionResponse extends React.Component {
 
       this.state = {optionSelected: ''};
   }
+
+  componentDidMount() {
+    // Log the props
+    console.log(this.props.match.params.id);    
+
+    // Get information out of the users array by calling an index of the id
+    console.log('users', this.props.questions);
+
+    console.log('curr question', this.props.currentQuestion.optionOne.text);
+    
+  }
+
+  renderLabelText(option) {
+    if (option === 'optionOne') {
+      console.log('optionOne');
+      return this.props.currentQuestion.optionOne.text
+    }
+
+    if (option === 'optionTwo') {
+      console.log('optionTwo');
+      return this.props.currentQuestion.optionTwo.text
+    }
+
+    console.log('You should not get here');
+    
+
+  }
     
   renderInput = ({ input, label }) => {  
 
     return (
-  
           <div className="grouped fields">
             <div className="ui radio checkbox">
               <input type="radio"  {...input} />
@@ -37,9 +63,7 @@ class QuestionResponse extends React.Component {
   }
   
 
-  render() {
-    console.log(this.props.questions);
-    
+  render() {    
     return (
       <div>
         <form
@@ -51,7 +75,7 @@ class QuestionResponse extends React.Component {
             name="selection"
             component={this.renderInput}
             type="radio"
-            label="First Option"
+            label={this.renderLabelText('optionOne')}
             value="optionOne"
             onChange={this.handleOnChange}
           />
@@ -59,7 +83,7 @@ class QuestionResponse extends React.Component {
             name="selection"
             component={this.renderInput}
             type="radio"
-            label="Second option"
+            label={this.renderLabelText('optionTwo')}
             value="optionTwo"
             onChange={this.handleOnChange}
           />
@@ -70,9 +94,11 @@ class QuestionResponse extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+
   return {
-    questions: state.questions
+    questions: state.questions,
+    currentQuestion: state.questions[ownProps.match.params.id]
   }
 };
 
