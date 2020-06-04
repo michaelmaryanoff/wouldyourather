@@ -2,7 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux';
 
 class QuestionResult extends React.Component {
-    
+    componentDidMount(){
+        console.log('selected question in QuestionResult', this.props.selectedQuestion)
+    }
     renderResults() {
         return (
             <div>
@@ -21,6 +23,7 @@ class QuestionResult extends React.Component {
  
     }
     render () {
+        console.log(this.props.selectedQuestion)
         return (
                 <div className="ui relaxed divided list">
                     {this.renderResults()}
@@ -29,9 +32,12 @@ class QuestionResult extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
+    console.log('current state', state);
+    
     return {
-        questions: state.questions
+        questions: state.questions,
+        selectedQuestion: state.selectedQuestion
     }
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { getSelectedQuestion } from '../../actions'
+import history from '../../history'
 
 
 class QuestionResponse extends React.Component {
@@ -35,7 +36,7 @@ class QuestionResponse extends React.Component {
               <input type="radio"  {...input} />
               <label>{label}</label>
             </div>
-            </div>
+          </div>
     );
   }
 
@@ -45,8 +46,8 @@ class QuestionResponse extends React.Component {
       alert('Please select an option')
       return
     }
-    console.log(this.props.currentQuestion);
-    this.props.getCurrentQuestion(this.props.currentQuestion)
+    this.props.getSelectedQuestion(this.props.currentQuestion)
+    history.push('/questions/result/temp')
   }
 
   handleOnChange = event => {
