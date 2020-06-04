@@ -9,25 +9,28 @@ class QuestionResponse extends React.Component {
   }
     
   renderInput = ({ input, label }) => {  
-    
-    
+
     return (
-      <div className="grouped fields">
-        <div className="field">
-            <label>{label}</label>
-            <input type="radio" checked="checked" {...input} />
-        </div>
-      </div>
+  
+          <div className="grouped fields">
+            <div className="ui radio checkbox">
+              <input type="radio"  {...input} />
+              <label>{label}</label>
+            </div>
+            </div>
     );
   }
 
-  onSubmit(formValues) {
-    console.log('submission values', formValues);
+  onSubmit = formValues => {
+
+    if (!this.state.optionSelected) {
+      alert('Please select an option')
+      return
+    }
+    console.log('submission values onSubmit', formValues);
   }
 
   handleOnChange = event => {
-    console.log('event.target.value', event.target.value);
-    
     this.setState({optionSelected: event.target.value })
   }
   
@@ -63,19 +66,6 @@ class QuestionResponse extends React.Component {
   }
 }
 
-const validate = ({optionOne, optionTwo}) => {
-  const errors = {}
-  if (!optionOne || !optionTwo) {
-    console.log('we cannot find a value!');
-    
-    errors.optionOne = 'Please select a response'
-    errors.optionTwo = 'Please select a response'
-    console.log(errors);
-  }
-  return errors
-}
-
 export default reduxForm({
-  form: 'questionResponse',
-  validate: validate
+  form: 'questionResponse'
 })(QuestionResponse);

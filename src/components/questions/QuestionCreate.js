@@ -14,9 +14,8 @@ class QuestionCreate extends React.Component {
         }
     }
 
-    renderInput = ({label, input, meta}) => {
+    renderInput = ({ label, input, meta}) => {
         // formProps is automatically created with the component attribute
-        // This can be destructured but we are not for now
         // Label is being passed through as a prop to our form component
         const className= `field ${meta.error && meta.touched ? 'error' : '' }`
         
