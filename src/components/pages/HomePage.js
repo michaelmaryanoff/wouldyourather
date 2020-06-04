@@ -73,7 +73,6 @@ class HomePage extends React.Component {
         if (isUnanswered) {
             
             return this.props.questions.filter(question => !question.optionOne.votes.includes(this.state.currentUser) && !question.optionTwo.votes.includes(this.state.currentUser)).map(question => {
-                console.log(question);
                 
                 const { name, avatarURL } = this.queryUserAttributes(question.author)[0]
                 const avatarURLFull = require(`../../api${avatarURL}`)     

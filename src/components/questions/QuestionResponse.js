@@ -1,5 +1,7 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+
 
 class QuestionResponse extends React.Component {
     constructor(props) {
@@ -36,6 +38,8 @@ class QuestionResponse extends React.Component {
   
 
   render() {
+    console.log(this.props.questions);
+    
     return (
       <div>
         <form
@@ -66,6 +70,14 @@ class QuestionResponse extends React.Component {
   }
 }
 
-export default reduxForm({
+const mapStateToProps = state => {
+  return {
+    questions: state.questions
+  }
+};
+
+const formWrapped = reduxForm({
   form: 'questionResponse'
 })(QuestionResponse);
+
+export default connect(mapStateToProps, {  })(formWrapped)
