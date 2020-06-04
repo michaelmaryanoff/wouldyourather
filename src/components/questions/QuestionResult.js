@@ -1,7 +1,11 @@
 import React from 'react'
 
-const QuestionResult = () => {
-    return <div>QuestionResult</div>;
+class QuestionResult extends React.Component {
+    render () {
+        return (
+            <div>QuestionResult</div>
+        )
+    }
 }
 
 export default QuestionResult;

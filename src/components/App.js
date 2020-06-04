@@ -2,6 +2,7 @@ import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import QuestionCreate from './questions/QuestionCreate';
 import QuestionResponse from './questions/QuestionResponse'
+import QuestionResult from './questions/QuestionResult'
 import history from '../history'
 
 import HomePage from './pages/HomePage';
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path="/leaderboard" exact component={LeaderBoard} />
                 <Route path="/" exact component={Login} />
                 <Route path="/questions/response/:id" exact component={QuestionResponse} />
+                <Route path="/questions/result/temp" exact component={QuestionResult} />
             </div>
             </Router>
             

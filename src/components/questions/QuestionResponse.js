@@ -17,23 +17,18 @@ class QuestionResponse extends React.Component {
     // Get information out of the users array by calling an index of the id
     console.log('users', this.props.questions);
 
-    console.log('curr question', this.props.currentQuestion.optionOne.text);
+    console.log('curr question', this.props.currentQuestion);
     
   }
 
   renderLabelText(option) {
     if (option === 'optionOne') {
-      console.log('optionOne');
       return this.props.currentQuestion.optionOne.text
     }
 
     if (option === 'optionTwo') {
-      console.log('optionTwo');
       return this.props.currentQuestion.optionTwo.text
     }
-
-    console.log('You should not get here');
-    
 
   }
     
@@ -55,7 +50,7 @@ class QuestionResponse extends React.Component {
       alert('Please select an option')
       return
     }
-    console.log('submission values onSubmit', formValues);
+    console.log(this.props.currentQuestion);
   }
 
   handleOnChange = event => {
@@ -106,4 +101,4 @@ const formWrapped = reduxForm({
   form: 'questionResponse'
 })(QuestionResponse);
 
-export default connect(mapStateToProps, {  })(formWrapped)
+export default connect(mapStateToProps)(formWrapped)

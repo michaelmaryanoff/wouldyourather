@@ -32,6 +32,7 @@ const fetchQuestionsReducer = (state={}, action) => {
 
 const addQuestionReducer = (state={}, action) => {
     if (action.type === 'ADD_QUESTION') {
+        console.log(action.payload);
         
         return action.payload
     }
@@ -54,4 +55,3 @@ export default combineReducers({
     addQuestion: addQuestionReducer,
     getQuestion: getCurrentQuestionReducer
 });
-
