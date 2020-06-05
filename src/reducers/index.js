@@ -16,8 +16,6 @@ const currentUserReducer = (currentUser=null, action) => {
 
 const fetchUsersReducer = (state=[], action) => {
     if (action.type === 'FETCH_USERS') {
-        
-        
         return action.payload
     }
     return state
@@ -44,6 +42,13 @@ const getselectedQuestionReducer = (state={}, action) => {
     return state
 }
 
+const submitQuestionResponseReducer=(state={}, action) => {
+    if (action.type === 'SUBMIT_RESPONSE') {
+        return action.payload
+    }
+    return state
+}
+
 
 export default combineReducers({
     currentUser: currentUserReducer,
@@ -51,5 +56,6 @@ export default combineReducers({
     questions: fetchQuestionsReducer,
     form: formReducer,
     addQuestion: addQuestionReducer,
-    selectedQuestion: getselectedQuestionReducer
+    selectedQuestion: getselectedQuestionReducer,
+    submittedQuestion: submitQuestionResponseReducer
 });

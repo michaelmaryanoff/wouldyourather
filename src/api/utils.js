@@ -4,6 +4,6 @@ export function saveQuestion(question) {
     return _saveQuestion(question)
 }
 
-export function saveQuestionAnswer(response) {
-    return _saveQuestionAnswer(response)
+export function saveQuestionAnswer(question) {
+    return _saveQuestionAnswer(question)
 }

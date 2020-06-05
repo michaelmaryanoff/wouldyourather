@@ -45,9 +45,7 @@ class QuestionResponse extends React.Component {
       alert('Please select an option')
       return
     }
-    this.props.getSelectedQuestion(this.props.currentQuestion)
     this.props.submitQuestionResponse(formValues)
-    history.push(`/questions/result/${this.props.currentQuestion.id}`)
   }
 
   handleOnChange = event => {
