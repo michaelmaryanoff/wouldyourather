@@ -18,6 +18,7 @@ export const signOut = user => {
 
 export const fetchQuestions = () => async dispatch => {
   const response = await _getQuestions();
+  console.log("response in getQuesions", response);
 
   dispatch({ type: "FETCH_QUESTIONS", payload: response });
 };
@@ -50,7 +51,9 @@ export const submitQuestionResponse = formValues => async (dispatch, getState) =
     answer: formValues.selection
   };
 
-  await saveQuestionAnswer(question);
+  await saveQuestionAnswer(question).then(
+    history.push(`/questions/result/${selectedQuestion.id}`)
+  );
 
   dispatch({ type: "SUBMIT_RESPONSE", payload: question });
 };
