@@ -18,7 +18,6 @@ export const signOut = user => {
 
 export const fetchQuestions = () => async dispatch => {
   const response = await _getQuestions();
-  console.log("response in getQuesions", response);
 
   dispatch({ type: "FETCH_QUESTIONS", payload: response });
 };

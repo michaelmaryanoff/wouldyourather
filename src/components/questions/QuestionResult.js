@@ -8,9 +8,6 @@ class QuestionResult extends React.Component {
   }
 
   renderChoices() {
-    // const { optionOne, optionTwo } = this.props.selectedQuestion;
-    // const totalVotes = optionOne.votes.length + optionTwo.votes.length;
-
     const { optionOne, optionTwo } = this.props.questions[
       this.props.selectedQuestion.id
     ];
@@ -42,9 +39,6 @@ class QuestionResult extends React.Component {
     return <div>{this.renderChoices()}</div>;
   }
   render() {
-    console.log("this.props.questions in render", this.props.questions);
-    console.log("this.props.currentQuestion", this.props.currentQuestion);
-
     return <div className="ui relaxed divided list">{this.renderResults()}</div>;
   }
 }

@@ -2,9 +2,7 @@ import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 
 const currentUserReducer = (currentUser = null, action) => {
-  // Checks to see if we are using a sign in action
   if (action.type === "SIGN_IN") {
-    console.log("currentUserReducer -> action.payload", action.payload);
     return action.payload;
   } else if (action.type === "SIGN_OUT") {
     return null;
@@ -14,14 +12,14 @@ const currentUserReducer = (currentUser = null, action) => {
 
 const fetchUsersReducer = (state = [], action) => {
   if (action.type === "FETCH_USERS") {
-    return action.payload;
+    return { ...state, ...action.payload };
   }
   return state;
 };
 
 const fetchQuestionsReducer = (state = {}, action) => {
   if (action.type === "FETCH_QUESTIONS") {
-    return action.payload;
+    return { ...state, ...action.payload };
   }
   return state;
 };
