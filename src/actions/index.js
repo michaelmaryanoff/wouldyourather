@@ -2,7 +2,6 @@ import { _getUsers, _getQuestions } from "../api/_DATA";
 import { saveQuestion, saveQuestionAnswer } from "../api/utils";
 import history from "../history";
 
-//TODO: make payload an object with a key and value
 export const signIn = user => {
   return {
     type: "SIGN_IN",
@@ -45,7 +44,7 @@ export const submitQuestionResponse = formValues => async (dispatch, getState) =
   const { currentUser, selectedQuestion } = getState();
 
   const question = {
-    authedUser: currentUser,
+    authedUser: currentUser.user,
     qid: selectedQuestion.id,
     answer: formValues.selection
   };

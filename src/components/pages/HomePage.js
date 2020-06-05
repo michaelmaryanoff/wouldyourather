@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  fetchQuestions,
-  fetchUsers,
-  fetchUsersAndQuestions
-} from "../../actions";
+import { fetchUsersAndQuestions } from "../../actions";
 import { connect } from "react-redux";
 import history from "../../history";
 import { Link } from "react-router-dom";
@@ -21,10 +17,6 @@ class HomePage extends React.Component {
   componentDidMount() {
     this.props.fetchUsersAndQuestions();
     this.setState({ currentUser: this.props.currentUser });
-    // Temporarily pushes us back to login if there is no current user
-    if (!this.props.currentUser) {
-      history.push("/");
-    }
   }
 
   renderResponseButton(question) {
@@ -93,19 +85,13 @@ class HomePage extends React.Component {
             !question.optionTwo.votes.includes(this.state.currentUser)
         )
         .map(question => {
-          const { name, avatarURL } = this.queryUserAttributes(
-            question.author
-          )[0];
+          const { name, avatarURL } = this.queryUserAttributes(question.author)[0];
           const avatarURLFull = require(`../../api${avatarURL}`);
           return (
             <div className="item" key={question.id}>
               {this.renderResponseButton(question)}
               <div className="content">
-                <img
-                  className="ui avatar image"
-                  alt="hey"
-                  src={avatarURLFull}
-                />
+                <img className="ui avatar image" alt="hey" src={avatarURLFull} />
                 <div className="header">{`${name} asks:`}</div>
                 <div>
                   {question.optionOne.text}
@@ -126,18 +112,12 @@ class HomePage extends React.Component {
             question.optionTwo.votes.includes(this.state.currentUser)
         )
         .map(question => {
-          const { name, avatarURL } = this.queryUserAttributes(
-            question.author
-          )[0];
+          const { name, avatarURL } = this.queryUserAttributes(question.author)[0];
           const avatarURLFull = require(`../../api${avatarURL}`);
           return (
             <div className="item" key={question.id}>
               <div className="content">
-                <img
-                  className="ui avatar image"
-                  alt="hey"
-                  src={avatarURLFull}
-                />
+                <img className="ui avatar image" alt="hey" src={avatarURLFull} />
                 <div className="header">{`${name} asks:`}</div>
                 <div>
                   {question.optionOne.text}
@@ -179,7 +159,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  fetchQuestions,
-  fetchUsers,
   fetchUsersAndQuestions
 })(HomePage);
