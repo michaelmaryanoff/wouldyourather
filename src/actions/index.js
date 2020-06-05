@@ -61,10 +61,11 @@ export const addQuestion = formValues => async (dispatch, getState) => {
   const { currentUser } = getState();
 
   const question = {
-    author: currentUser,
+    author: currentUser.user,
     optionOneText: optionOne,
     optionTwoText: optionTwo
   };
+  console.log("add question", question);
 
   const response = await saveQuestion(question);
 
