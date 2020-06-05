@@ -8,29 +8,13 @@ class QuestionResult extends React.Component {
   }
 
   renderChoices() {
-    const { optionOne, optionTwo } = this.props.selectedQuestion;
-    const totalVotes = optionOne.votes.length + optionTwo.votes.length;
-    // Get question from questions array at index of selected question
-    console.log(
-      "QuestionResult -> renderChoices -> this.props.questions",
-      this.props.questions
-    );
-    console.log(
-      "QuestionResult -> renderChoices -> this.props.question[this.props.currentQuestion.id]",
+    // const { optionOne, optionTwo } = this.props.selectedQuestion;
+    // const totalVotes = optionOne.votes.length + optionTwo.votes.length;
+
+    const { optionOne, optionTwo } = this.props.questions[
       this.props.selectedQuestion.id
-    );
-    console.log(
-      "question for interpelation",
-      this.props.questions[this.props.selectedQuestion.id]
-    );
-
-    // Log that question
-
-    // Log the number of votes
-
-    // Assign the number of new votes to the variable
-
-    // Populate UI with this
+    ];
+    const totalVotes = optionOne.votes.length + optionTwo.votes.length;
 
     return (
       <div>
