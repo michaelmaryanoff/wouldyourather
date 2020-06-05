@@ -15,8 +15,8 @@ class QuestionResponse extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getSelectedQuestion(this.props.currentQuestion);
     this.props.fetchUsersAndQuestions();
+    this.props.getSelectedQuestion(this.props.currentQuestion);
   }
 
   renderLabelText = option => {
@@ -82,11 +82,17 @@ class QuestionResponse extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("ownProps", ownProps);
+  console.log("ownprops ID", ownProps.match.params.id);
+  console.log("ownprops in state", state.questions[ownProps.match.params.id]);
+  console.log("state questions", state.questions);
+
   return {
     questions: Object.values(state.questions),
     users: Object.values(state.users),
     currentQuestion: state.questions[ownProps.match.params.id],
-    selectedQuestion: state.selectedQuestion
+    selectedQuestion: state.selectedQuestion,
+    currentUser: state.currentUser
   };
 };
 

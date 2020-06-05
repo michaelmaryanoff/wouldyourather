@@ -1,7 +1,6 @@
 import React from "react";
 import { fetchUsersAndQuestions } from "../../actions";
 import { connect } from "react-redux";
-import history from "../../history";
 import { Link } from "react-router-dom";
 
 class HomePage extends React.Component {
@@ -16,7 +15,7 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     this.props.fetchUsersAndQuestions();
-    this.setState({ currentUser: this.props.currentUser });
+    this.setState({ currentUser: this.props.currentUser.user });
   }
 
   renderResponseButton(question) {
