@@ -42,23 +42,15 @@ export const getSelectedQuestion = question => {
 };
 
 export const submitQuestionResponse = formValues => async (dispatch, getState) => {
-  console.log("formValues", formValues);
-  console.log("getState", getState());
-
-  // Get the option from the form values
-  // Get the current question we are working with
   const { currentUser, selectedQuestion } = getState();
-
-  // create an object with:
-  // *authedUser
-  // *qid
-  // *answer
 
   const question = {
     authedUser: currentUser,
     qid: selectedQuestion.id,
     answer: formValues.selection
   };
+
+  await saveQuestionAnswer(question);
 
   dispatch({ type: "SUBMIT_RESPONSE", payload: question });
 };
