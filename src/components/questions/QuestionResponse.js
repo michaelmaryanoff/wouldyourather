@@ -54,7 +54,6 @@ class QuestionResponse extends React.Component {
   };
 
   render() {
-    console.log("props id", this.props.passedid);
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">

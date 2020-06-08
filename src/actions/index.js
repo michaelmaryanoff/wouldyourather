@@ -65,7 +65,6 @@ export const addQuestion = formValues => async (dispatch, getState) => {
     optionOneText: optionOne,
     optionTwoText: optionTwo
   };
-  console.log("add question", question);
 
   const response = await saveQuestion(question);
 
