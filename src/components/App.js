@@ -14,26 +14,9 @@ import Header from "./Header";
 import { connect } from "react-redux";
 
 class App extends React.Component {
-  componentDidMount() {}
-
-  checkUser() {
-    let userBool = true;
-
-    if (_.isEmpty(this.props.currentUser)) {
-      console.log("is empty");
-
-      userBool = false;
-    } else {
-      console.log("not empty");
-
-      userBool = true;
-    }
-    console.log("user bool in function", userBool);
-
-    return userBool;
-  }
-
-  redirectUser() {}
+  redirectUser = () => {
+    return _.isEmpty(this.props.currentUser) ? <Redirect to="/" /> : <HomePage />;
+  };
 
   render() {
     return (
@@ -42,21 +25,21 @@ class App extends React.Component {
           <div>
             <Header />
             <Route path="/home" exact component={HomePage}>
-              {_.isEmpty(this.props.currentUser) ? (
-                <Redirect to="/" />
-              ) : (
-                <HomePage />
-              )}
+              {this.redirectUser()}
             </Route>
-            <Route path="/questions/new" exact component={QuestionCreate}></Route>
-            <Route path="/leaderboard" exact component={LeaderBoard} />
+            <Route path="/questions/new" exact component={QuestionCreate}>
+              {this.redirectUser()}
+            </Route>
+            <Route path="/leaderboard" exact component={LeaderBoard}>
+              {this.redirectUser()}
+            </Route>
             <Route path="/" exact component={Login} />
-            <Route
-              path="/questions/response/:id"
-              exact
-              component={QuestionResponse}
-            />
-            <Route path="/questions/result/:id" exact component={QuestionResult} />
+            <Route path="/questions/response/:id" exact component={QuestionResponse}>
+              {this.redirectUser()}
+            </Route>
+            <Route path="/questions/result/:id" exact component={QuestionResult}>
+              {this.redirectUser()}
+            </Route>
           </div>
         </Router>
       </div>
