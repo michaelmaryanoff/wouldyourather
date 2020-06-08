@@ -90,7 +90,7 @@ class HomePage extends React.Component {
             <div className="item" key={question.id}>
               {this.renderResponseButton(question)}
               <div className="content">
-                <img className="ui avatar image" alt="hey" src={avatarURLFull} />
+                <img className="ui avatar image" alt={name} src={avatarURLFull} />
                 <div className="header">{`${name} asks:`}</div>
                 <div>
                   {question.optionOne.text}
