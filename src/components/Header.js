@@ -2,9 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logout from "../components/auth/Logout";
 import { connect } from "react-redux";
+import _ from "lodash";
 
 class Header extends React.Component {
   renderCurrentuser() {
+    if (_.isEmpty(this.props.currentUser)) {
+      console.log("no user");
+    } else {
+      console.log("there is a user");
+    }
     return <div>Current user</div>;
   }
 
