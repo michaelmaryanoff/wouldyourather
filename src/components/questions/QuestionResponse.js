@@ -1,6 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import {
   getSelectedQuestion,
   submitQuestionResponse,
@@ -11,7 +12,7 @@ class QuestionResponse extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { optionSelected: "" };
+    this.state = { optionSelected: "", id: "" };
   }
 
   componentDidMount() {
@@ -53,6 +54,7 @@ class QuestionResponse extends React.Component {
   };
 
   render() {
+    console.log("props id", this.props.passedid);
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
@@ -82,15 +84,10 @@ class QuestionResponse extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("ownProps", ownProps);
-  console.log("ownprops ID", ownProps.match.params.id);
-  console.log("ownprops in state", state.questions[ownProps.match.params.id]);
-  console.log("state questions", state.questions);
-
   return {
     questions: Object.values(state.questions),
     users: Object.values(state.users),
-    currentQuestion: state.questions[ownProps.match.params.id],
+    currentQuestion: state.questions[state.selectedQuestion.id],
     selectedQuestion: state.selectedQuestion,
     currentUser: state.currentUser
   };
@@ -104,4 +101,4 @@ export default connect(mapStateToProps, {
   getSelectedQuestion,
   submitQuestionResponse,
   fetchUsersAndQuestions
-})(formWrapped);
+})(withRouter(formWrapped));

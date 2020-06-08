@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchUsersAndQuestions } from "../../actions";
+import { fetchUsersAndQuestions, getSelectedQuestion } from "../../actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -18,12 +18,18 @@ class HomePage extends React.Component {
     this.setState({ currentUser: this.props.currentUser.user });
   }
 
+  handleOnClickResponseLink = question => {
+    this.props.getSelectedQuestion(question);
+  };
+
   renderResponseButton(question) {
     return (
       <div className="right floated content">
         <Link
           to={`/questions/response/${question.id}`}
+          onClick={() => this.handleOnClickResponseLink(question)}
           className="ui button primary"
+          mylink="mylink"
         >
           Respond
         </Link>
@@ -47,13 +53,13 @@ class HomePage extends React.Component {
       <div>
         <button
           className={unansweredButtonClass}
-          onClick={() => this.handleOnClick(true)}
+          onClick={() => this.handleOnClickAnswered(true)}
         >
           Unanswered Questions
         </button>
         <button
           className={answeredButtonClass}
-          onClick={() => this.handleOnClick(false)}
+          onClick={() => this.handleOnClickAnswered(false)}
         >
           Answered Questions
         </button>
@@ -61,7 +67,7 @@ class HomePage extends React.Component {
     );
   }
 
-  handleOnClick(isUnanswered) {
+  handleOnClickAnswered(isUnanswered) {
     // This funciton will change interface depending on a bool which lets us know
     // If we are rendering unanswered questions (true) or answered questions (false)
     if (isUnanswered === true) {
@@ -153,10 +159,12 @@ const mapStateToProps = state => {
     questions: Object.values(state.questions),
     users: Object.values(state.users),
     currentUser: state.currentUser,
-    currentQuestion: state.currentQuestion
+    currentQuestion: state.currentQuestion,
+    selectedQuestion: state.selectedQuestion
   };
 };
 
 export default connect(mapStateToProps, {
-  fetchUsersAndQuestions
+  fetchUsersAndQuestions,
+  getSelectedQuestion
 })(HomePage);

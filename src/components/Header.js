@@ -6,12 +6,11 @@ import _ from "lodash";
 
 class Header extends React.Component {
   renderCurrentuser() {
-    if (_.isEmpty(this.props.currentUser)) {
-      console.log("no user");
-    } else {
-      console.log("there is a user");
-    }
-    return <div>Current user</div>;
+    return !_.isEmpty(this.props.currentUser) ? (
+      `Welcome, ${this.props.users[this.props.currentUser.user].name}!`
+    ) : (
+      <div></div>
+    );
   }
 
   render() {
@@ -37,7 +36,8 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    users: state.users
   };
 };
 

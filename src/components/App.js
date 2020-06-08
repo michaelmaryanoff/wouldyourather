@@ -14,8 +14,8 @@ import Header from "./Header";
 import { connect } from "react-redux";
 
 class App extends React.Component {
-  redirectUser = () => {
-    return _.isEmpty(this.props.currentUser) ? <Redirect to="/" /> : <HomePage />;
+  redirectUser = page => {
+    return _.isEmpty(this.props.currentUser) ? <Redirect to="/" /> : page;
   };
 
   render() {
@@ -24,21 +24,21 @@ class App extends React.Component {
         <Router history={history}>
           <div>
             <Header />
-            <Route path="/home" exact component={HomePage}>
-              {this.redirectUser()}
+            <Route path="/home" exact>
+              {this.redirectUser(<HomePage />)}
             </Route>
-            <Route path="/questions/new" exact component={QuestionCreate}>
-              {this.redirectUser()}
+            <Route path="/questions/new" exact>
+              {this.redirectUser(<QuestionCreate />)}
             </Route>
-            <Route path="/leaderboard" exact component={LeaderBoard}>
-              {this.redirectUser()}
+            <Route path="/leaderboard" exact>
+              {this.redirectUser(<LeaderBoard />)}
             </Route>
             <Route path="/" exact component={Login} />
-            <Route path="/questions/response/:id" exact component={QuestionResponse}>
-              {this.redirectUser()}
+            <Route path="/questions/response/:id" exact>
+              {this.redirectUser(<QuestionResponse />)}
             </Route>
-            <Route path="/questions/result/:id" exact component={QuestionResult}>
-              {this.redirectUser()}
+            <Route path="/questions/result/:id" exact>
+              {this.redirectUser(<QuestionResult />)}
             </Route>
           </div>
         </Router>
