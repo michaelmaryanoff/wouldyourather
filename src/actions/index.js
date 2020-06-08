@@ -1,30 +1,30 @@
-import { _getUsers, _getQuestions } from "../api/_DATA";
-import { saveQuestion, saveQuestionAnswer } from "../api/utils";
-import history from "../history";
+import { _getUsers, _getQuestions } from '../api/_DATA';
+import { saveQuestion, saveQuestionAnswer } from '../api/utils';
+import history from '../history';
 
 export const signIn = user => {
   return {
-    type: "SIGN_IN",
+    type: 'SIGN_IN',
     payload: user
   };
 };
 
 export const signOut = user => {
   return {
-    type: "SIGN_OUT"
+    type: 'SIGN_OUT'
   };
 };
 
 export const fetchQuestions = () => async dispatch => {
   const response = await _getQuestions();
 
-  dispatch({ type: "FETCH_QUESTIONS", payload: response });
+  dispatch({ type: 'FETCH_QUESTIONS', payload: response });
 };
 
 export const fetchUsers = () => async dispatch => {
   const response = await _getUsers();
 
-  dispatch({ type: "FETCH_USERS", payload: response });
+  dispatch({ type: 'FETCH_USERS', payload: response });
 };
 
 export const fetchUsersAndQuestions = () => {
@@ -35,7 +35,7 @@ export const fetchUsersAndQuestions = () => {
 
 export const getSelectedQuestion = question => {
   return {
-    type: "SELECT_QUESTION",
+    type: 'SELECT_QUESTION',
     payload: question
   };
 };
@@ -53,7 +53,7 @@ export const submitQuestionResponse = formValues => async (dispatch, getState) =
     history.push(`/questions/result/${selectedQuestion.id}`)
   );
 
-  dispatch({ type: "SUBMIT_RESPONSE", payload: question });
+  dispatch({ type: 'SUBMIT_RESPONSE', payload: question });
 };
 
 export const addQuestion = formValues => async (dispatch, getState) => {
@@ -68,5 +68,5 @@ export const addQuestion = formValues => async (dispatch, getState) => {
 
   const response = await saveQuestion(question);
 
-  dispatch({ type: "ADD_QUESTION", payload: response });
+  dispatch({ type: 'ADD_QUESTION', payload: response });
 };

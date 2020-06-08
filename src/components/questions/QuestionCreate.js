@@ -1,7 +1,7 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { connect } from "react-redux";
-import { addQuestion } from "../../actions";
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { addQuestion } from '../../actions';
 
 class QuestionCreate extends React.Component {
   renderError({ error, touched }) {
@@ -17,7 +17,7 @@ class QuestionCreate extends React.Component {
   renderInput = ({ label, input, meta }) => {
     // formProps is automatically created with the component attribute
     // Label is being passed through as a prop to our form component
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
 
     return (
       <div className={className}>
@@ -33,7 +33,7 @@ class QuestionCreate extends React.Component {
     // We have all that stuff taken care of by Redux Form
     this.props
       .addQuestion(formValues)
-      .then(alert("Your questions was submitted successfully"));
+      .then(alert('Your questions was submitted successfully'));
   };
 
   render() {
@@ -57,11 +57,11 @@ const validate = formValues => {
   const errors = {};
 
   if (!formValues.optionOne) {
-    errors.optionOne = "You must enter a first option";
+    errors.optionOne = 'You must enter a first option';
   }
 
   if (!formValues.optionTwo) {
-    errors.optionTwo = "You must enter a second option";
+    errors.optionTwo = 'You must enter a second option';
   }
 
   return errors;
@@ -70,7 +70,7 @@ const validate = formValues => {
 // The reason that these look so convoluted is because the connect function was already occupied by our form
 const formWrapped = reduxForm({
   // Redux form stores you info with this key in your store
-  form: "questionCreate",
+  form: 'questionCreate',
   validate: validate
 })(QuestionCreate);
 

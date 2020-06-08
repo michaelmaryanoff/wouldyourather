@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Logout from "../components/auth/Logout";
-import { connect } from "react-redux";
-import _ from "lodash";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Logout from '../components/auth/Logout';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class Header extends React.Component {
   renderCurrentuser() {

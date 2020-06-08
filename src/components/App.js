@@ -1,17 +1,17 @@
-import React from "react";
-import { Router, Route, Redirect } from "react-router-dom";
-import QuestionCreate from "./questions/QuestionCreate";
-import QuestionResponse from "./questions/QuestionResponse";
-import QuestionResult from "./questions/QuestionResult";
-import history from "../history";
-import _ from "lodash";
+import React from 'react';
+import { Router, Route, Redirect } from 'react-router-dom';
+import QuestionCreate from './questions/QuestionCreate';
+import QuestionResponse from './questions/QuestionResponse';
+import QuestionResult from './questions/QuestionResult';
+import history from '../history';
+import _ from 'lodash';
 
-import HomePage from "./pages/HomePage";
-import LeaderBoard from "./pages/LeaderBoard";
-import Login from "./pages/Login";
+import HomePage from './pages/HomePage';
+import LeaderBoard from './pages/LeaderBoard';
+import Login from './pages/Login';
 
-import Header from "./Header";
-import { connect } from "react-redux";
+import Header from './Header';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
   redirectUser = page => {

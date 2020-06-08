@@ -1,18 +1,18 @@
-import React from "react";
-import { Field, reduxForm } from "redux-form";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import {
   getSelectedQuestion,
   submitQuestionResponse,
   fetchUsersAndQuestions
-} from "../../actions";
+} from '../../actions';
 
 class QuestionResponse extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { optionSelected: "", id: "" };
+    this.state = { optionSelected: '', id: '' };
   }
 
   componentDidMount() {
@@ -21,11 +21,11 @@ class QuestionResponse extends React.Component {
   }
 
   renderLabelText = option => {
-    if (option === "optionOne") {
+    if (option === 'optionOne') {
       return this.props.currentQuestion.optionOne.text;
     }
 
-    if (option === "optionTwo") {
+    if (option === 'optionTwo') {
       return this.props.currentQuestion.optionTwo.text;
     }
   };
@@ -43,7 +43,7 @@ class QuestionResponse extends React.Component {
 
   onSubmit = formValues => {
     if (!this.state.optionSelected) {
-      alert("Please select an option");
+      alert('Please select an option');
       return;
     }
     this.props.submitQuestionResponse(formValues);
@@ -63,7 +63,7 @@ class QuestionResponse extends React.Component {
             name="selection"
             component={this.renderInput}
             type="radio"
-            label={this.renderLabelText("optionOne")}
+            label={this.renderLabelText('optionOne')}
             value="optionOne"
             onChange={this.handleOnChange}
           />
@@ -71,7 +71,7 @@ class QuestionResponse extends React.Component {
             name="selection"
             component={this.renderInput}
             type="radio"
-            label={this.renderLabelText("optionTwo")}
+            label={this.renderLabelText('optionTwo')}
             value="optionTwo"
             onChange={this.handleOnChange}
           />
@@ -93,7 +93,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const formWrapped = reduxForm({
-  form: "questionResponse"
+  form: 'questionResponse'
 })(QuestionResponse);
 
 export default connect(mapStateToProps, {

@@ -1,9 +1,8 @@
-import React from 'react'
-import LoginDropdown from '../auth/LoginDropdown'
-
+import React from 'react';
+import LoginDropdown from '../auth/LoginDropdown';
 
 const Login = () => {
-    return <LoginDropdown />
-}
+  return <LoginDropdown />;
+};
 
 export default Login;

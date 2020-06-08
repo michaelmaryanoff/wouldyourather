@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const QuestionForm = () => {
-    return <div>QuestionForm</div>;
-}
+  return <div>QuestionForm</div>;
+};
 
-export default QuestionForm
+export default QuestionForm;

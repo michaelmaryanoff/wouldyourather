@@ -1,7 +1,7 @@
-import React from "react";
-import { fetchUsersAndQuestions } from "../../actions";
-import { connect } from "react-redux";
-import _ from "lodash";
+import React from 'react';
+import { fetchUsersAndQuestions } from '../../actions';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class LeaderBoard extends React.Component {
   componentDidMount() {

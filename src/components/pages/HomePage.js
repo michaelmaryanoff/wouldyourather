@@ -1,7 +1,7 @@
-import React from "react";
-import { fetchUsersAndQuestions, getSelectedQuestion } from "../../actions";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { fetchUsersAndQuestions, getSelectedQuestion } from '../../actions';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class HomePage extends React.Component {
 
     this.state = {
       isUnanswered: true,
-      currentUser: ""
+      currentUser: ''
     };
   }
 
@@ -38,15 +38,15 @@ class HomePage extends React.Component {
   }
 
   renderToggleButtons() {
-    let unansweredButtonClass = "";
-    let answeredButtonClass = "";
+    let unansweredButtonClass = '';
+    let answeredButtonClass = '';
 
     if (this.state.isUnanswered) {
-      unansweredButtonClass = "ui button primary";
-      answeredButtonClass = "ui button";
+      unansweredButtonClass = 'ui button primary';
+      answeredButtonClass = 'ui button';
     } else {
-      unansweredButtonClass = "ui button";
-      answeredButtonClass = "ui button primary";
+      unansweredButtonClass = 'ui button';
+      answeredButtonClass = 'ui button primary';
     }
 
     return (
