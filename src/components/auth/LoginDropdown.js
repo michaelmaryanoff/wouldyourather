@@ -7,8 +7,6 @@ class LoginDropdown extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleChange = this.handleChange.bind(this);
-
     this.state = { id: '' };
   }
 
@@ -16,11 +14,12 @@ class LoginDropdown extends React.Component {
     this.props.fetchUsersAndQuestions();
   }
 
-  handleChange(change) {
+  handleChange = change => {
     this.setState({ id: change.target.value });
-  }
+  };
 
   renderDropDownMenu() {
+    console.log('USERS IN PROPS', this.props.users);
     return this.props.users.map(user => {
       return (
         <option id={user.id} key={user.id} value={user.id}>
@@ -62,11 +61,11 @@ class LoginDropdown extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // Sets our current user state
+  console.log('state userlist', state.users.userList);
+
   return {
-    users: Object.values(state.users),
-    questions: Object.values(state.questions),
-    currentUser: state.currentUser
+    users: Object.values(state.users.userList),
+    questions: Object.values(state.questions)
   };
 };
 
