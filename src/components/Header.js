@@ -7,7 +7,7 @@ import _ from 'lodash';
 class Header extends React.Component {
   renderCurrentuser() {
     return !_.isEmpty(this.props.currentUser) ? (
-      `Welcome, ${this.props.users[this.props.currentUser.user].name}!`
+      `Welcome, ${this.props.users[this.props.currentUser].name}!`
     ) : (
       <div></div>
     );
@@ -36,8 +36,8 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser,
-    users: state.users
+    currentUser: state.users.authedUser,
+    users: state.users.userList
   };
 };
 
