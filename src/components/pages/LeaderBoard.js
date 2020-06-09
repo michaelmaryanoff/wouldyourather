@@ -39,8 +39,8 @@ class LeaderBoard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    questions: Object.values(state.questions),
-    users: Object.values(state.users)
+    questions: Object.values(state.questions.questionList),
+    users: Object.values(state.users.userList)
   };
 };
 
