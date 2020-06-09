@@ -30,12 +30,25 @@ class QuestionResponse extends React.Component {
     }
   };
 
-  renderInput = ({ input, label }) => {
+  renderOptionOne = component => {
+    console.log('component', component);
+
     return (
       <div className="grouped fields">
         <div className="ui radio checkbox">
-          <input type="radio" {...input} />
-          <label>{label}</label>
+          <input checked="true" type="radio" {...component.input} />
+          <label>{component.label}</label>
+        </div>
+      </div>
+    );
+  };
+
+  renderOptionTwo = component => {
+    return (
+      <div className="grouped fields">
+        <div className="ui radio checkbox">
+          <input checked="true" type="radio" {...component.input} />
+          <label>{component.label}</label>
         </div>
       </div>
     );
@@ -50,30 +63,44 @@ class QuestionResponse extends React.Component {
   };
 
   handleOnChange = event => {
+    console.log('event target', event.target.value);
+
     this.setState({ optionSelected: event.target.value });
   };
 
   render() {
+    console.log('state is', this.state);
+    console.log('form', this.props);
+
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
           <label>Would you rather?</label>
+          <div className="grouped fields"></div>
           <p />
           <Field
             name="selection"
-            component={this.renderInput}
+            className="ui radio checkbox"
+            component={this.renderOptionOne}
             type="radio"
             label={this.renderLabelText('optionOne')}
             value="optionOne"
-            onChange={this.handleOnChange}
+            id="optionOne"
+            onChange={event => {
+              this.handleOnChange(event);
+            }}
           />
           <Field
             name="selection"
-            component={this.renderInput}
+            component={this.renderOptionTwo}
+            className="ui radio checkbox"
             type="radio"
             label={this.renderLabelText('optionTwo')}
             value="optionTwo"
-            onChange={this.handleOnChange}
+            id="optionTwo"
+            onChange={event => {
+              this.handleOnChange(event);
+            }}
           />
           <button className="ui button primary">Submit Answer</button>
         </form>
@@ -83,15 +110,12 @@ class QuestionResponse extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('selected question in state', state.questions.selectedQuestion);
-
   return {
     questions: Object.values(state.questions),
     users: Object.values(state.users),
     currentQuestion:
       state.questions.questionList[state.questions.selectedQuestion.id],
-    selectedQuestion: state.questions.selectedQuestion,
-    currentUser: state.currentUser
+    selectedQuestion: state.questions.selectedQuestion
   };
 };
 
