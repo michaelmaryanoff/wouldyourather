@@ -8,7 +8,13 @@ class LeaderBoard extends React.Component {
     this.props.fetchUsersAndQuestions();
   }
 
+  compareScores = (a, b) => {
+    return;
+  };
+
   renderLeaderList() {
+    //* https://stackoverflow.com/questions/40145190/lodash-map-array-of-entity-key-value-to-into-an-object-with-properties
+    // See above post to sort this
     return this.props.users.map(user => {
       const { questions, answers, name, id, avatarURL } = user;
       const totalScore = user.questions.length + _.size(user.answers);
@@ -22,8 +28,7 @@ class LeaderBoard extends React.Component {
             <div className="header">{name}</div>
             <div className="description">
               Answered Questions = {_.size(answers)}
-              <br />
-              Created questions = {questions.length}
+              <br /> Created questions = {questions.length}
               <br />
             </div>
           </div>
