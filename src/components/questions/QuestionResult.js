@@ -8,8 +8,8 @@ class QuestionResult extends React.Component {
   }
 
   renderChoices() {
-    const { optionOne, optionTwo } = this.props.questions[
-      this.props.selectedQuestion.id
+    const { optionOne, optionTwo } = this.props.questions.questionList[
+      this.props.questions.selectedQuestion.id
     ];
     const totalVotes = optionOne.votes.length + optionTwo.votes.length;
 
@@ -17,7 +17,7 @@ class QuestionResult extends React.Component {
       <div>
         <div className="item">
           <div className="Header">
-            {this.props.selectedQuestion.optionOne.text}
+            {this.props.questions.selectedQuestion.optionOne.text}
             <div className="content">
               {optionOne.votes.length} out of {totalVotes} users chose this option.
             </div>
@@ -25,7 +25,7 @@ class QuestionResult extends React.Component {
         </div>
         <div className="item">
           <div className="Header">
-            {this.props.selectedQuestion.optionTwo.text}
+            {this.props.questions.selectedQuestion.optionTwo.text}
             <div className="content">
               {optionTwo.votes.length} out of {totalVotes} users chose this option.
             </div>

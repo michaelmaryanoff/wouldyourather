@@ -51,16 +51,18 @@ export const getSelectedQuestion = question => {
 };
 
 export const submitQuestionResponse = formValues => async (dispatch, getState) => {
-  const { currentUser, selectedQuestion } = getState();
+  console.log('getstate', getState());
+
+  const { users, questions } = getState();
 
   const question = {
-    authedUser: currentUser.user,
-    qid: selectedQuestion.id,
+    authedUser: users.authedUser,
+    qid: questions.selectedQuestion.id,
     answer: formValues.selection
   };
 
   await saveQuestionAnswer(question).then(
-    history.push(`/questions/result/${selectedQuestion.id}`)
+    history.push(`/questions/result/${questions.selectedQuestion.id}`)
   );
 
   dispatch({ type: SUBMIT_RESPONSE, payload: question });
