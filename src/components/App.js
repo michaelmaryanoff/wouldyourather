@@ -49,7 +49,7 @@ class App extends React.Component {
 const mapStateToProps = state => {
   // Sets our current user state
   return {
-    currentUser: state.currentUser
+    currentUser: state.users.authedUser
   };
 };
 

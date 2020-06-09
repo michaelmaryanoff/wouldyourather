@@ -15,7 +15,7 @@ class HomePage extends React.Component {
 
   componentDidMount() {
     this.props.fetchUsersAndQuestions();
-    this.setState({ currentUser: this.props.currentUser.user });
+    this.setState({ currentUser: this.props.currentUser });
   }
 
   handleOnClickResponseLink = question => {
@@ -158,7 +158,7 @@ const mapStateToProps = state => {
   return {
     questions: Object.values(state.questions),
     users: Object.values(state.users),
-    currentUser: state.currentUser,
+    currentUser: state.users.authedUser,
     currentQuestion: state.currentQuestion,
     selectedQuestion: state.selectedQuestion
   };

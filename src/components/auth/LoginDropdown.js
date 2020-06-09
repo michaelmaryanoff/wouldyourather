@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signIn, fetchUsers, fetchUsersAndQuestions } from '../../actions';
+import { signIn, fetchUsersAndQuestions } from '../../actions';
 import history from '../../history';
 
 class LoginDropdown extends React.Component {
@@ -19,7 +19,6 @@ class LoginDropdown extends React.Component {
   };
 
   renderDropDownMenu() {
-    console.log('USERS IN PROPS', this.props.users);
     return this.props.users.map(user => {
       return (
         <option id={user.id} key={user.id} value={user.id}>
@@ -33,6 +32,8 @@ class LoginDropdown extends React.Component {
     click.preventDefault();
 
     if (this.state.id !== '' && 'selectUser') {
+      console.log('redirect');
+
       this.props.signIn(this.state.id);
       history.push('/home');
     }
@@ -61,8 +62,6 @@ class LoginDropdown extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state userlist', state.users.userList);
-
   return {
     users: Object.values(state.users.userList),
     questions: Object.values(state.questions)
@@ -71,6 +70,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   signIn,
-  fetchUsers,
   fetchUsersAndQuestions
 })(LoginDropdown);
