@@ -70,10 +70,10 @@ export const submitQuestionResponse = formValues => async (dispatch, getState) =
 
 export const addQuestion = formValues => async (dispatch, getState) => {
   const { optionOne, optionTwo } = formValues;
-  const { currentUser } = getState();
+  const { users } = getState();
 
   const question = {
-    author: currentUser.user,
+    author: users.authedUser,
     optionOneText: optionOne,
     optionTwoText: optionTwo
   };
