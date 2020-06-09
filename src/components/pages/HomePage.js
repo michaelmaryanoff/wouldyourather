@@ -157,7 +157,7 @@ const mapStateToProps = state => {
   // Sets our current user state
   return {
     questions: Object.values(state.questions),
-    users: Object.values(state.users),
+    users: Object.values(state.users.userList),
     currentUser: state.users.authedUser,
     currentQuestion: state.currentQuestion,
     selectedQuestion: state.selectedQuestion
