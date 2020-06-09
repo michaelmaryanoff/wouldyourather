@@ -6,14 +6,19 @@ import {
 } from '../actions/types';
 import _ from 'lodash';
 
-export default (state = {}, action) => {
+const INITIAL_STATE = {
+  questionList: {},
+  selectedQuestion: {}
+};
+
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_QUESTIONS:
-      return { ...state, ..._.mapKeys(action.payload, 'id') };
+      return { ...state, questionList: _.mapKeys(action.payload, 'id') };
     case ADD_QUESTION:
       return { ...state, [action.payload.id]: action.payload };
     case SELECT_QUESTION:
-      return { ...state, ...action.payload };
+      return { ...state, selectedQuestion: action.payload };
     case SUBMIT_RESPONSE:
       return { ...state, ...action.payload };
     default:

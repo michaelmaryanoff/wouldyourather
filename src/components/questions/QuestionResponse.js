@@ -83,11 +83,14 @@ class QuestionResponse extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('selected question in state', state.questions.selectedQuestion);
+
   return {
     questions: Object.values(state.questions),
     users: Object.values(state.users),
-    currentQuestion: state.questions[state.selectedQuestion.id],
-    selectedQuestion: state.selectedQuestion,
+    currentQuestion:
+      state.questions.questionList[state.questions.selectedQuestion.id],
+    selectedQuestion: state.questions.selectedQuestion,
     currentUser: state.currentUser
   };
 };

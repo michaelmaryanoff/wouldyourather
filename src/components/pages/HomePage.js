@@ -156,7 +156,7 @@ class HomePage extends React.Component {
 const mapStateToProps = state => {
   // Sets our current user state
   return {
-    questions: Object.values(state.questions),
+    questions: Object.values(state.questions.questionList),
     users: Object.values(state.users.userList),
     currentUser: state.users.authedUser,
     currentQuestion: state.currentQuestion,
