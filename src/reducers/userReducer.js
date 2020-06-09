@@ -4,7 +4,7 @@ import _ from 'lodash';
 export default (state = {}, action) => {
   switch (action.type) {
     case SIGN_IN:
-      return { ...state, user: action.payload };
+      return { ...state, authedUser: action.payload };
     case SIGN_OUT:
       return null;
     case FETCH_USERS:
