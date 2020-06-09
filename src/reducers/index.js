@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { act } from 'react-dom/test-utils';
+import _ from 'lodash';
 
 const currentUserReducer = (state = {}, action) => {
   if (action.type === 'SIGN_IN') {
@@ -13,30 +13,33 @@ const currentUserReducer = (state = {}, action) => {
 
 const fetchUsersReducer = (state = {}, action) => {
   if (action.type === 'FETCH_USERS') {
-    return { ...state, ...action.payload };
+    console.log('fetch users state', state);
+
+    return { ...state, ..._.mapKeys(action.payload, 'id') };
   }
   return state;
 };
 
 const fetchQuestionsReducer = (state = {}, action) => {
   if (action.type === 'FETCH_QUESTIONS') {
-    return { ...state, ...action.payload };
+    return { ...state, ..._.mapKeys(action.payload, 'id') };
   }
   return state;
 };
 
 const addQuestionReducer = (state = {}, action) => {
   if (action.type === 'ADD_QUESTION') {
-    console.log('action is', action);
-    console.log('action.payload is', action.payload);
+    console.log('add question state2', state);
 
-    return { ...state, ...action.payload };
+    return { ...state, [action.payload.id]: action.payload };
   }
   return state;
 };
 
 const getselectedQuestionReducer = (state = {}, action) => {
   if (action.type === 'SELECT_QUESTION') {
+    console.log('question state', state);
+
     return { ...state, ...action.payload };
   }
   return state;

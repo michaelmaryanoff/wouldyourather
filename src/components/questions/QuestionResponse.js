@@ -82,7 +82,7 @@ class QuestionResponse extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     questions: Object.values(state.questions),
     users: Object.values(state.users),
