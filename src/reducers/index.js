@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
+import _ from 'lodash';
 import userReducer from './userReducer';
 
 const fetchQuestionsReducer = (state = {}, action) => {
