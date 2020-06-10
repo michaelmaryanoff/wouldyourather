@@ -2,7 +2,6 @@ import React from 'react';
 import { fetchUsersAndQuestions } from '../../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { object } from 'prop-types';
 
 class LeaderBoard extends React.Component {
   componentDidMount() {
