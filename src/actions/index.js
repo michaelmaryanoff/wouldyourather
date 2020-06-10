@@ -59,9 +59,9 @@ export const submitQuestionResponse = formValues => async (dispatch, getState) =
     answer: formValues.selection
   };
 
-  await saveQuestionAnswer(question).then(
-    history.push(`/questions/result/${questions.selectedQuestion.id}`)
-  );
+  await saveQuestionAnswer(question);
+
+  history.push(`/questions/result/${questions.selectedQuestion.id}`);
 
   dispatch({ type: SUBMIT_RESPONSE, payload: question });
 };

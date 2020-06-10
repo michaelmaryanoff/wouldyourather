@@ -31,9 +31,7 @@ class QuestionCreate extends React.Component {
   onSubmit = formValues => {
     // FormValues is used instead of the event object because we no longer care about the event object
     // We have all that stuff taken care of by Redux Form
-    this.props
-      .addQuestion(formValues)
-      .then(alert('Your questions was submitted successfully'));
+    this.props.addQuestion(formValues);
   };
 
   render() {
