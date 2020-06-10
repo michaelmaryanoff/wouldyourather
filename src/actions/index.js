@@ -78,5 +78,7 @@ export const addQuestion = formValues => async (dispatch, getState) => {
 
   const response = await saveQuestion(question);
 
+  history.push('/home');
+
   dispatch({ type: ADD_QUESTION, payload: response });
 };
