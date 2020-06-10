@@ -82,10 +82,6 @@ class HomePage extends React.Component {
   }
 
   renderQuestionsListFilter(isUnanswered) {
-    const tempQuestions = this.props.questions;
-    const sortedQuestions = tempQuestions.sort((a, b) => b.timestamp - a.timestamp);
-    console.log(sortedQuestions);
-
     if (isUnanswered) {
       return this.props.questions
         .filter(
@@ -159,7 +155,9 @@ class HomePage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    questions: Object.values(state.questions.questionList),
+    questions: Object.values(state.questions.questionList).sort(
+      (a, b) => b.timestamp - a.timestamp
+    ),
     users: Object.values(state.users.userList),
     currentUser: state.users.authedUser,
     currentQuestion: state.currentQuestion,
