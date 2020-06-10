@@ -53,11 +53,24 @@ class QuestionResponse extends React.Component {
     this.setState({ optionSelected: event.target.value });
   };
 
+  renderTitle() {
+    const { avatarURL, name } = this.props.currentQuestionAttributes;
+    const fullURL = require(`../../api${avatarURL}`);
+
+    return (
+      <div>
+        <img src={fullURL} className="ui avatar image" alt={name} />
+        {name} asks:
+      </div>
+    );
+  }
+
   render() {
     return (
       <div>
+        {this.renderTitle()}
+        <label>Would you rather?</label>
         <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
-          <label>Would you rather?</label>
           <p />
           <Field
             name="selection"
