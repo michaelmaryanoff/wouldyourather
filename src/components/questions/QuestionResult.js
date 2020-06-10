@@ -12,6 +12,12 @@ class QuestionResult extends React.Component {
       this.props.questions.selectedQuestion.id
     ];
     const totalVotes = optionOne.votes.length + optionTwo.votes.length;
+    const optionOnePercentage = Math.floor(
+      (optionOne.votes.length / totalVotes) * 100
+    );
+    const optionTwoPercentage = Math.floor(
+      (optionTwo.votes.length / totalVotes) * 100
+    );
 
     return (
       <div>
@@ -19,7 +25,8 @@ class QuestionResult extends React.Component {
           <div className="Header">
             {this.props.questions.selectedQuestion.optionOne.text}
             <div className="content">
-              {optionOne.votes.length} out of {totalVotes} users chose this option.
+              {optionOne.votes.length} out of {totalVotes} users chose this option. (
+              {optionOnePercentage}%)
             </div>
           </div>
         </div>
@@ -27,7 +34,8 @@ class QuestionResult extends React.Component {
           <div className="Header">
             {this.props.questions.selectedQuestion.optionTwo.text}
             <div className="content">
-              {optionTwo.votes.length} out of {totalVotes} users chose this option.
+              {optionTwo.votes.length} out of {totalVotes} users chose this option. (
+              {optionTwoPercentage}%)
             </div>
           </div>
         </div>
