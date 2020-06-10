@@ -10,7 +10,7 @@ export default (state = INITIAL_STATE, action) => {
     case SIGN_IN:
       return { ...state, authedUser: action.payload };
     case SIGN_OUT:
-      return null;
+      return { ...state, authedUser: null };
     case FETCH_USERS:
       return { ...state, userList: action.payload };
     default:

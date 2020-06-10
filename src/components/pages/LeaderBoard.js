@@ -13,9 +13,6 @@ class LeaderBoard extends React.Component {
   };
 
   renderLeaderList() {
-    //* https://stackoverflow.com/questions/40145190/lodash-map-array-of-entity-key-value-to-into-an-object-with-properties
-    // See above post to sort this
-
     let newUserList = Object.values(this.props.users);
 
     let mappedUserList = newUserList.map(user => {
