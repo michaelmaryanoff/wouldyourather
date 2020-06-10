@@ -2,6 +2,7 @@ import React from 'react';
 import { fetchUsersAndQuestions } from '../../actions';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { object } from 'prop-types';
 
 class LeaderBoard extends React.Component {
   componentDidMount() {
@@ -15,7 +16,19 @@ class LeaderBoard extends React.Component {
   renderLeaderList() {
     //* https://stackoverflow.com/questions/40145190/lodash-map-array-of-entity-key-value-to-into-an-object-with-properties
     // See above post to sort this
-    return this.props.users.map(user => {
+
+    let newUserList = Object.values(this.props.users);
+
+    let mappedUserList = newUserList.map(user => {
+      let totalScore = user.questions.length + _.size(user.answers);
+
+      user.totalScore = totalScore;
+      return user;
+    });
+
+    mappedUserList.sort((a, b) => b.totalScore - a.totalScore);
+
+    return mappedUserList.map(user => {
       const { questions, answers, name, id, avatarURL } = user;
       const totalScore = user.questions.length + _.size(user.answers);
       const avatarURLFull = require(`../../api${avatarURL}`);
