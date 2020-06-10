@@ -43,6 +43,7 @@ class QuestionCreate extends React.Component {
           onSubmit={this.props.handleSubmit(this.onSubmit)}
           className="ui form error"
         >
+          Would you rather? <p />
           <Field name="optionOne" component={this.renderInput} label="Option One" />
           <Field name="optionTwo" component={this.renderInput} label="Option Two" />
           <button className="ui button primary">Submit</button>
