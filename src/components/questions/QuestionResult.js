@@ -19,21 +19,34 @@ class QuestionResult extends React.Component {
       (optionTwo.votes.length / totalVotes) * 100
     );
 
+    let optionOneFontWeight =
+      this.props.chosenResponse === 'optionOne' ? 'bold' : 'normal';
+    let optionTwoFontWeight =
+      this.props.chosenResponse === 'optionTwo' ? 'bold' : 'normal';
+    console.log('optionOneFontWeight', optionOneFontWeight);
+    console.log('optionTwoFontWeight', optionTwoFontWeight);
+
     return (
       <div>
         <div className="item">
-          <div className="Header">
+          <div className="header" style={{ fontWeight: `${optionOneFontWeight}` }}>
             {this.props.questions.selectedQuestion.optionOne.text}
-            <div className="content">
+            <div
+              className="content"
+              style={{ fontWeight: `${optionOneFontWeight}` }}
+            >
               {optionOne.votes.length} out of {totalVotes} users chose this option. (
               {optionOnePercentage}%)
             </div>
           </div>
         </div>
         <div className="item">
-          <div className="Header">
+          <div className="header" style={{ fontWeight: `${optionTwoFontWeight}` }}>
             {this.props.questions.selectedQuestion.optionTwo.text}
-            <div className="content">
+            <div
+              className="content"
+              style={{ fontWeight: `${optionTwoFontWeight}` }}
+            >
               {optionTwo.votes.length} out of {totalVotes} users chose this option. (
               {optionTwoPercentage}%)
             </div>
@@ -52,9 +65,11 @@ class QuestionResult extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state.questions.selectedQuestion', state);
+
   return {
     questions: state.questions,
-    selectedQuestion: state.selectedQuestion
+    chosenResponse: state.questions.answer
   };
 };
 
