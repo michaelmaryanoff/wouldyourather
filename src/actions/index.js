@@ -51,8 +51,6 @@ export const getSelectedQuestion = question => {
 };
 
 export const submitQuestionResponse = formValues => async (dispatch, getState) => {
-  console.log('getstate', getState());
-
   const { users, questions } = getState();
 
   const question = {

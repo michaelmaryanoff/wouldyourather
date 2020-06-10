@@ -23,8 +23,6 @@ class QuestionResult extends React.Component {
       this.props.chosenResponse === 'optionOne' ? 'bold' : 'normal';
     let optionTwoFontWeight =
       this.props.chosenResponse === 'optionTwo' ? 'bold' : 'normal';
-    console.log('optionOneFontWeight', optionOneFontWeight);
-    console.log('optionTwoFontWeight', optionTwoFontWeight);
 
     return (
       <div>
@@ -65,8 +63,6 @@ class QuestionResult extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state.questions.selectedQuestion', state);
-
   return {
     questions: state.questions,
     chosenResponse: state.questions.answer

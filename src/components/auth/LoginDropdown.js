@@ -32,8 +32,6 @@ class LoginDropdown extends React.Component {
     click.preventDefault();
 
     if (this.state.id !== '' && 'selectUser') {
-      console.log('redirect');
-
       this.props.signIn(this.state.id);
       history.push('/home');
     }
