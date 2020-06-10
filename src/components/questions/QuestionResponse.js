@@ -18,6 +18,15 @@ class QuestionResponse extends React.Component {
   componentDidMount() {
     this.props.fetchUsersAndQuestions();
     this.props.getSelectedQuestion(this.props.currentQuestion);
+    console.log('users', this.props.users);
+    const tempSelectedQuestion = this.props.selectedQuestion.author;
+    const tempUsers = this.props.users;
+    const tempSelectedUserInfo = tempUsers.filter(
+      user => user.id === tempSelectedQuestion
+    )[0];
+    console.log('tempselectedquestions', tempSelectedQuestion);
+    console.log('tempusers', tempUsers);
+    console.log(' tempSelectedUserInfo', tempSelectedUserInfo);
   }
 
   renderLabelText = option => {
@@ -85,7 +94,7 @@ class QuestionResponse extends React.Component {
 const mapStateToProps = state => {
   return {
     questions: Object.values(state.questions),
-    users: Object.values(state.users),
+    users: Object.values(state.users.userList),
     currentQuestion:
       state.questions.questionList[state.questions.selectedQuestion.id],
     selectedQuestion: state.questions.selectedQuestion,
