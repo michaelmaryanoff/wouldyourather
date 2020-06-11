@@ -9,21 +9,12 @@ import _ from 'lodash';
 import HomePage from './pages/HomePage';
 import LeaderBoard from './pages/LeaderBoard';
 import SecureRoute from './auth/SecureRoute';
-import Login from './pages/Login';
 import LoginDropdown from './auth/LoginDropdown';
 
 import Header from './Header';
 import { connect } from 'react-redux';
 
 class App extends React.Component {
-  redirectUser = page => {
-    return _.isEmpty(this.props.currentUser) ? (
-      <Redirect to={{ pathname: '/' }} />
-    ) : (
-      page
-    );
-  };
-
   render() {
     return (
       <div className="ui container">
