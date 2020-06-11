@@ -57,6 +57,8 @@ class QuestionResult extends React.Component {
     return <div>{this.renderChoices()}</div>;
   }
   render() {
+    console.log('this.props', this.props);
+
     return <div className="ui relaxed divided list">{this.renderResults()}</div>;
   }
 }

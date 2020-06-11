@@ -7,6 +7,8 @@ import {
   submitQuestionResponse,
   fetchUsersAndQuestions
 } from '../../actions';
+import _ from 'lodash';
+import { throwStatement } from '@babel/types';
 
 class QuestionResponse extends React.Component {
   constructor(props) {
@@ -17,7 +19,6 @@ class QuestionResponse extends React.Component {
 
   componentDidMount() {
     this.props.fetchUsersAndQuestions();
-    this.props.getSelectedQuestion(this.props.currentQuestion);
   }
 
   renderLabelText = option => {
@@ -54,6 +55,9 @@ class QuestionResponse extends React.Component {
   };
 
   renderTitle() {
+    if (!this.props.currentQuestionAttributes) {
+      console.log('we have attributes in renderTitle');
+    }
     const { avatarURL, name } = this.props.currentQuestionAttributes;
     const fullURL = require(`../../api${avatarURL}`);
 
@@ -66,6 +70,8 @@ class QuestionResponse extends React.Component {
   }
 
   render() {
+    console.log('this.props', this.props);
+
     return (
       <div>
         {this.renderTitle()}
@@ -95,13 +101,34 @@ class QuestionResponse extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  // Maybe write here a return statement that depends on our currentquestionattributes
+  // console.log('state in msp', state.questions.selectedQuestion);
+  console.log('props in msp', ownProps.questionId);
+
+  if (_.isEmpty(state.questions.selectedQuestion)) {
+    return {
+      questions: Object.values(state.questions),
+      users: Object.values(state.users.userList),
+      currentQuestion: state.questions.questionList[ownProps.questionId],
+      selectedQuestion: state.questions.questionList[ownProps.questionId],
+      currentQuestionAttributes: Object.values(state.users.userList).filter(
+        user => user.id === state.questions.questionList[ownProps.questionId].author
+      )[0]
+    };
+  }
   return {
     questions: Object.values(state.questions),
     users: Object.values(state.users.userList),
+    // We need to get rid of this dependencey on the id of the selected question
     currentQuestion:
       state.questions.questionList[state.questions.selectedQuestion.id],
+
+    // We need to create a selected question using this.props.questionId only
+    //* Maybe we can do this by querying the questionlist
     selectedQuestion: state.questions.selectedQuestion,
+
+    // We need to get this out of the new created question
     currentQuestionAttributes: Object.values(state.users.userList).filter(
       user => user.id === state.questions.selectedQuestion.author
     )[0]

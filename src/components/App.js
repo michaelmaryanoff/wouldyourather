@@ -41,8 +41,11 @@ class App extends React.Component {
             <SecureRoute
               path="/questions/response/:id"
               exact
-              component={QuestionResponse}
+              component={component => (
+                <QuestionResponse questionId={component.match.params.id} />
+              )}
               authedUser={this.props.authedUser}
+              questionId="questionID"
             />
             <SecureRoute
               path="/questions/result/:id"
