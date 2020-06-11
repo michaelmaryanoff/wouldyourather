@@ -1,6 +1,7 @@
 import React from 'react';
 import { fetchUsersAndQuestions } from '../../actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import _ from 'lodash';
 
 class LeaderBoard extends React.Component {
@@ -47,6 +48,8 @@ class LeaderBoard extends React.Component {
   }
 
   render() {
+    console.log('props', this.props);
+
     return <div className="ui celled list">{this.renderLeaderList()}</div>;
   }
 }
@@ -58,4 +61,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUsersAndQuestions })(LeaderBoard);
+export default withRouter(
+  connect(mapStateToProps, { fetchUsersAndQuestions })(LeaderBoard)
+);
