@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 class App extends React.Component {
   redirectUser = page => {
     return _.isEmpty(this.props.currentUser) ? (
-      <Redirect to={{ pathname: '/', state: { from: 'billy' } }} />
+      <Redirect to={{ pathname: '/' }} />
     ) : (
       page
     );
@@ -34,9 +34,22 @@ class App extends React.Component {
             <Route path="/questions/new" exact>
               {this.redirectUser(<QuestionCreate />)}
             </Route>
-            <Route path="/leaderboard" exact>
-              {this.redirectUser(<LeaderBoard />)}
-            </Route>
+            <Route
+              path="/leaderboard"
+              exact
+              render={props => {
+                console.log('these are the props', props);
+
+                return !_.isEmpty(this.props.currentUser) ? (
+                  <LeaderBoard {...props} />
+                ) : (
+                  <Redirect
+                    to={{ pathname: '/', state: { from: props.location.pathname } }}
+                  />
+                );
+              }}
+            />
+
             <Route path="/" exact component={Login} />
             <Route path="/questions/response/:id" exact>
               {this.redirectUser(<QuestionResponse />)}
