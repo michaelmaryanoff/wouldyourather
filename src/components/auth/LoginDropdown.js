@@ -41,10 +41,13 @@ class LoginDropdown extends React.Component {
 
   render() {
     const { from } = this.props.location.state || {
-      from: { pathname: '/' }
+      from: { pathname: '/home' }
     };
 
     if (this.state.redirectToRefferer === true) {
+      console.log('did redirect to reffer');
+      console.log('from', from);
+
       return <Redirect to={from} />;
     }
 
