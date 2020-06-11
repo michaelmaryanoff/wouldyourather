@@ -12,12 +12,11 @@ class QuestionResult extends React.Component {
       this.props.questions.selectedQuestion.id
     ];
     const totalVotes = optionOne.votes.length + optionTwo.votes.length;
-    const optionOnePercentage = Math.floor(
-      (optionOne.votes.length / totalVotes) * 100
-    );
-    const optionTwoPercentage = Math.floor(
-      (optionTwo.votes.length / totalVotes) * 100
-    );
+    let optionOnePercentage = 0;
+    let optionTwoPercentage = 0;
+
+    optionOnePercentage = Math.floor((optionOne.votes.length / totalVotes) * 100);
+    optionTwoPercentage = Math.floor((optionTwo.votes.length / totalVotes) * 100);
 
     let optionOneFontWeight =
       this.props.chosenResponse === 'optionOne' ? 'bold' : 'normal';
