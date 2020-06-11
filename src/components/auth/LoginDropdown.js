@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { signIn, fetchUsersAndQuestions } from '../../actions';
 import history from '../../history';
 import { withRouter } from 'react-router';
+import { Redirect } from 'react-router-dom';
 
 class LoginDropdown extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { id: '' };
+    this.state = { id: '', redirectToRefferer: false };
   }
 
   componentDidMount() {
@@ -29,18 +30,22 @@ class LoginDropdown extends React.Component {
     });
   }
 
-  handleOnClick(click) {
+  handleOnClick = click => {
     click.preventDefault();
 
     if (this.state.id !== '' && 'selectUser') {
       this.props.signIn(this.state.id);
-      history.push('/home');
+      this.setState({ redirectToRefferer: true });
     }
-  }
+  };
 
   render() {
-    console.log('props in login dd', this.props);
-    console.log('state in login', this.state);
+    const { from } = this.props.location.state || {
+      from: { pathname: '/' }
+    };
+    if (this.state.redirectToRefferer === true) {
+      return <Redirect to={from} />;
+    }
 
     return (
       <form>
@@ -64,6 +69,8 @@ class LoginDropdown extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state is', state);
+
   return {
     users: Object.values(state.users.userList),
     questions: Object.values(state.questions)

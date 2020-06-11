@@ -8,7 +8,9 @@ import _ from 'lodash';
 
 import HomePage from './pages/HomePage';
 import LeaderBoard from './pages/LeaderBoard';
+import SecureRoute from './auth/SecureRoute';
 import Login from './pages/Login';
+import LoginDropdown from './auth/LoginDropdown';
 
 import Header from './Header';
 import { connect } from 'react-redux';
@@ -29,28 +31,19 @@ class App extends React.Component {
           <div>
             <Header />
             <Route path="/home" exact>
-              {this.redirectUser(<HomePage />)}
+              {<HomePage />}
             </Route>
             <Route path="/questions/new" exact>
               {this.redirectUser(<QuestionCreate />)}
             </Route>
-            <Route
+            <SecureRoute
               path="/leaderboard"
               exact
-              render={props => {
-                console.log('these are the props', props);
-
-                return !_.isEmpty(this.props.currentUser) ? (
-                  <LeaderBoard {...props} />
-                ) : (
-                  <Redirect
-                    to={{ pathname: '/', state: { from: props.location.pathname } }}
-                  />
-                );
-              }}
+              component={LeaderBoard}
+              authedUser={this.props.authedUser}
             />
 
-            <Route path="/" exact component={Login} />
+            <Route path="/" exact component={LoginDropdown} />
             <Route path="/questions/response/:id" exact>
               {this.redirectUser(<QuestionResponse />)}
             </Route>
@@ -65,8 +58,10 @@ class App extends React.Component {
 }
 const mapStateToProps = state => {
   // Sets our current user state
+  console.log('state in app', state);
+
   return {
-    currentUser: state.users.authedUser
+    authedUser: state.users.authedUser
   };
 };
 
