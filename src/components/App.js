@@ -15,7 +15,11 @@ import { connect } from 'react-redux';
 
 class App extends React.Component {
   redirectUser = page => {
-    return _.isEmpty(this.props.currentUser) ? <Redirect to="/" /> : page;
+    return _.isEmpty(this.props.currentUser) ? (
+      <Redirect to={{ pathname: '/', state: { from: 'billy' } }} />
+    ) : (
+      page
+    );
   };
 
   render() {
@@ -31,7 +35,7 @@ class App extends React.Component {
               {this.redirectUser(<QuestionCreate />)}
             </Route>
             <Route path="/leaderboard" exact>
-              {this.redirectUser(<LeaderBoard />)}>
+              {this.redirectUser(<LeaderBoard />)}
             </Route>
             <Route path="/" exact component={Login} />
             <Route path="/questions/response/:id" exact>

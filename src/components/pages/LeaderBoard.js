@@ -48,8 +48,6 @@ class LeaderBoard extends React.Component {
   }
 
   render() {
-    console.log('props', this.props);
-
     return <div className="ui celled list">{this.renderLeaderList()}</div>;
   }
 }

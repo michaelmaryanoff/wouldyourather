@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { signIn, fetchUsersAndQuestions } from '../../actions';
 import history from '../../history';
+import { withRouter } from 'react-router';
 
 class LoginDropdown extends React.Component {
   constructor(props) {
@@ -38,6 +39,9 @@ class LoginDropdown extends React.Component {
   }
 
   render() {
+    console.log('props in login dd', this.props);
+    console.log('state in login', this.state);
+
     return (
       <form>
         Select a user <p />
@@ -66,7 +70,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  signIn,
-  fetchUsersAndQuestions
-})(LoginDropdown);
+export default withRouter(
+  connect(mapStateToProps, {
+    signIn,
+    fetchUsersAndQuestions
+  })(LoginDropdown)
+);
