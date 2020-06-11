@@ -30,26 +30,37 @@ class App extends React.Component {
         <Router history={history}>
           <div>
             <Header />
-            <Route path="/home" exact>
-              {<HomePage />}
-            </Route>
-            <Route path="/questions/new" exact>
-              {this.redirectUser(<QuestionCreate />)}
-            </Route>
+            <SecureRoute
+              path="/home"
+              exact
+              component={HomePage}
+              authedUser={this.props.authedUser}
+            />
+            <SecureRoute
+              path="/questions/new"
+              exact
+              component={QuestionCreate}
+              authedUser={this.props.authedUser}
+            />
             <SecureRoute
               path="/leaderboard"
               exact
               component={LeaderBoard}
               authedUser={this.props.authedUser}
             />
-
+            <SecureRoute
+              path="/questions/response/:id"
+              exact
+              component={QuestionResponse}
+              authedUser={this.props.authedUser}
+            />
+            <SecureRoute
+              path="/questions/result/:id"
+              exact
+              component={QuestionResult}
+              authedUser={this.props.authedUser}
+            />
             <Route path="/" exact component={LoginDropdown} />
-            <Route path="/questions/response/:id" exact>
-              {this.redirectUser(<QuestionResponse />)}
-            </Route>
-            <Route path="/questions/result/:id" exact>
-              {this.redirectUser(<QuestionResult />)}
-            </Route>
           </div>
         </Router>
       </div>
@@ -58,8 +69,6 @@ class App extends React.Component {
 }
 const mapStateToProps = state => {
   // Sets our current user state
-  console.log('state in app', state);
-
   return {
     authedUser: state.users.authedUser
   };

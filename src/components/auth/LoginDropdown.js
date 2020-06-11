@@ -43,7 +43,10 @@ class LoginDropdown extends React.Component {
     const { from } = this.props.location.state || {
       from: { pathname: '/' }
     };
+
     if (this.state.redirectToRefferer === true) {
+      console.log('redirect to referrer if');
+
       return <Redirect to={from} />;
     }
 
@@ -69,8 +72,6 @@ class LoginDropdown extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state is', state);
-
   return {
     users: Object.values(state.users.userList),
     questions: Object.values(state.questions)
