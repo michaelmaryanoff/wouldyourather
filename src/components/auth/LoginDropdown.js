@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signIn, fetchUsersAndQuestions } from '../../actions';
-import history from '../../history';
 import { withRouter } from 'react-router';
 import { Redirect } from 'react-router-dom';
 

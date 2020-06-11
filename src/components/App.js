@@ -1,10 +1,9 @@
 import React from 'react';
-import { Router, Route, Redirect } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import QuestionCreate from './questions/QuestionCreate';
 import QuestionResponse from './questions/QuestionResponse';
 import QuestionResult from './questions/QuestionResult';
 import history from '../history';
-import _ from 'lodash';
 
 import HomePage from './pages/HomePage';
 import LeaderBoard from './pages/LeaderBoard';
