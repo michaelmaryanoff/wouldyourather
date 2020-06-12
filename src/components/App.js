@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import LeaderBoard from './pages/LeaderBoard';
 import SecureRoute from './auth/SecureRoute';
 import LoginDropdown from './auth/LoginDropdown';
+import ErrorPage from './auth/ErrorPage'
 
 import Header from './Header';
 import { connect } from 'react-redux';
@@ -55,6 +56,7 @@ class App extends React.Component {
               authedUser={this.props.authedUser}
             />
             <Route path="/" exact component={LoginDropdown} />
+            <Route component={ErrorPage}/>
           </div>
         </Router>
       </div>
