@@ -10,8 +10,6 @@ class QuestionResult extends React.Component {
   }
 
   renderChoices() {
-    console.log('props', this.props);
-
     const { optionOne, optionTwo } = this.props.questions.questionList[
       this.props.questionId
     ];
@@ -69,9 +67,7 @@ class QuestionResult extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('own props', ownProps);
   if (_.isEmpty(state.questions.selectedQuestion)) {
-    console.log('could not find a selected questions');
     return { questionNotFound: true };
   }
 

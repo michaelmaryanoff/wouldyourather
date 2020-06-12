@@ -106,7 +106,6 @@ const mapStateToProps = (state, ownProps) => {
   // Maybe write here a return statement that depends on our currentquestionattributes
   if (_.isEmpty(state.questions.selectedQuestion)) {
     if (!state.questions.questionList[ownProps.questionId]) {
-      console.log('we could not find a question!');
       return { questionNotFound: true };
     }
     return {
