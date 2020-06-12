@@ -2,11 +2,13 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import ErrorPage from '../auth/ErrorPage';
 import {
   getSelectedQuestion,
   submitQuestionResponse,
   fetchUsersAndQuestions
 } from '../../actions';
+
 import _ from 'lodash';
 
 class QuestionResponse extends React.Component {
@@ -68,6 +70,9 @@ class QuestionResponse extends React.Component {
   }
 
   render() {
+    if (this.props.questionNotFound === true) {
+      return <ErrorPage />;
+    }
     return (
       <div>
         {this.renderTitle()}
@@ -100,6 +105,10 @@ class QuestionResponse extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   // Maybe write here a return statement that depends on our currentquestionattributes
   if (_.isEmpty(state.questions.selectedQuestion)) {
+    if (!state.questions.questionList[ownProps.questionId]) {
+      console.log('we could not find a question!');
+      return { questionNotFound: true };
+    }
     return {
       questions: Object.values(state.questions),
       users: Object.values(state.users.userList),

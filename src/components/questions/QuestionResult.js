@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchQuestions } from '../../actions';
+import ErrorPage from '../auth/ErrorPage';
+import _ from 'lodash';
 
 class QuestionResult extends React.Component {
   componentDidMount() {
@@ -59,11 +61,20 @@ class QuestionResult extends React.Component {
     return <div>{this.renderChoices()}</div>;
   }
   render() {
+    if (this.props.questionNotFound) {
+      return <ErrorPage />;
+    }
     return <div className="ui relaxed divided list">{this.renderResults()}</div>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  console.log('own props', ownProps);
+  if (_.isEmpty(state.questions.selectedQuestion)) {
+    console.log('could not find a selected questions');
+    return { questionNotFound: true };
+  }
+
   return {
     questions: state.questions,
     chosenResponse: state.questions.answer

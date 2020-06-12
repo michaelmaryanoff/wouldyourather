@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Router, Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import QuestionCreate from './questions/QuestionCreate';
 import QuestionResponse from './questions/QuestionResponse';
 import QuestionResult from './questions/QuestionResult';

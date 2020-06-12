@@ -5,7 +5,7 @@ class ErrorPage extends React.Component {
   render() {
     return (
       <div>
-        <img src={NotFound} alt="Page not found" />
+        <img className="ui fluid image" src={NotFound} alt="Page not found" />
       </div>
     );
   }
