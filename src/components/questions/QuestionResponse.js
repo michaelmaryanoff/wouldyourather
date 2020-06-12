@@ -55,7 +55,6 @@ class QuestionResponse extends React.Component {
 
   renderTitle() {
     if (!this.props.currentQuestionAttributes) {
-      console.log('we have attributes in renderTitle');
     }
     const { avatarURL, name } = this.props.currentQuestionAttributes;
     const fullURL = require(`../../api${avatarURL}`);
@@ -69,8 +68,6 @@ class QuestionResponse extends React.Component {
   }
 
   render() {
-    console.log('this.props', this.props);
-
     return (
       <div>
         {this.renderTitle()}
@@ -102,9 +99,6 @@ class QuestionResponse extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   // Maybe write here a return statement that depends on our currentquestionattributes
-  // console.log('state in msp', state.questions.selectedQuestion);
-  console.log('props in msp', ownProps.questionId);
-
   if (_.isEmpty(state.questions.selectedQuestion)) {
     return {
       questions: Object.values(state.questions),

@@ -44,9 +44,6 @@ class LoginDropdown extends React.Component {
     };
 
     if (this.state.redirectToRefferer === true) {
-      console.log('did redirect to reffer');
-      console.log('from', from);
-
       return <Redirect to={from} />;
     }
 

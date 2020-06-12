@@ -4,12 +4,14 @@ import { fetchQuestions } from '../../actions';
 
 class QuestionResult extends React.Component {
   componentDidMount() {
-    this.props.fetchQuestions();
+    this.props.fetchUsersAndQuestions();
   }
 
   renderChoices() {
+    console.log('props', this.props);
+
     const { optionOne, optionTwo } = this.props.questions.questionList[
-      this.props.questions.selectedQuestion.id
+      this.props.questionId
     ];
     const totalVotes = optionOne.votes.length + optionTwo.votes.length;
     let optionOnePercentage = 0;
@@ -57,8 +59,6 @@ class QuestionResult extends React.Component {
     return <div>{this.renderChoices()}</div>;
   }
   render() {
-    console.log('this.props', this.props);
-
     return <div className="ui relaxed divided list">{this.renderResults()}</div>;
   }
 }
