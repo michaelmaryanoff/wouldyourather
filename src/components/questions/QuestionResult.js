@@ -4,7 +4,7 @@ import { fetchQuestions } from '../../actions';
 
 class QuestionResult extends React.Component {
   componentDidMount() {
-    this.props.fetchUsersAndQuestions();
+    this.props.fetchQuestions();
   }
 
   renderChoices() {
@@ -29,7 +29,7 @@ class QuestionResult extends React.Component {
       <div>
         <div className="item">
           <div className="header" style={{ fontWeight: `${optionOneFontWeight}` }}>
-            {this.props.questions.selectedQuestion.optionOne.text}
+            {optionOne.text}
             <div
               className="content"
               style={{ fontWeight: `${optionOneFontWeight}` }}
@@ -41,7 +41,7 @@ class QuestionResult extends React.Component {
         </div>
         <div className="item">
           <div className="header" style={{ fontWeight: `${optionTwoFontWeight}` }}>
-            {this.props.questions.selectedQuestion.optionTwo.text}
+            {optionTwo.text}
             <div
               className="content"
               style={{ fontWeight: `${optionTwoFontWeight}` }}
