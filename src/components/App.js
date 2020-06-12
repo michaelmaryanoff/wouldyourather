@@ -45,12 +45,13 @@ class App extends React.Component {
                 <QuestionResponse questionId={component.match.params.id} />
               )}
               authedUser={this.props.authedUser}
-              questionId="questionID"
             />
             <SecureRoute
               path="/questions/result/:id"
               exact
-              component={QuestionResult}
+              component={component => (
+                <QuestionResult questionId={component.match.params.id} />
+              )}
               authedUser={this.props.authedUser}
             />
             <Route path="/" exact component={LoginDropdown} />

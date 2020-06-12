@@ -8,7 +8,6 @@ import {
   fetchUsersAndQuestions
 } from '../../actions';
 import _ from 'lodash';
-import { throwStatement } from '@babel/types';
 
 class QuestionResponse extends React.Component {
   constructor(props) {
